@@ -1,4 +1,4 @@
-package com.github.zsoltk.pokedex.main
+package com.github.zsoltk.pokedex.main.appbar
 
 import androidx.compose.Composable
 import androidx.compose.unaryPlus
@@ -8,7 +8,9 @@ import androidx.ui.layout.Column
 import androidx.ui.layout.HeightSpacer
 import androidx.ui.material.MaterialTheme
 import androidx.ui.text.font.FontWeight
+import androidx.ui.tooling.preview.Preview
 
+@Preview
 @Composable
 fun MainAppBar() {
     val colors = +MaterialTheme.colors()

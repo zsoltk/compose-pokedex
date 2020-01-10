@@ -7,7 +7,8 @@ import androidx.ui.core.*
 import androidx.ui.layout.*
 import androidx.ui.material.MaterialTheme
 import androidx.ui.tooling.preview.Preview
-import com.github.zsoltk.pokedex.main.MainAppBar
+import com.github.zsoltk.pokedex.main.appbar.MainAppBar
+import com.github.zsoltk.pokedex.main.menu.Menu
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +29,8 @@ fun AppContent() {
         }
 
         expanded(1f) {
-            Container(modifier = Spacing(24.dp)) {
-                Text("Body")
+            Container(alignment = Alignment.TopCenter) {
+                Menu()
             }
         }
     }

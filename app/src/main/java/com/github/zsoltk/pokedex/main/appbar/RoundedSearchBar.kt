@@ -1,4 +1,4 @@
-package com.github.zsoltk.pokedex.main
+package com.github.zsoltk.pokedex.main.appbar
 
 import androidx.compose.Composable
 import androidx.compose.unaryPlus
@@ -14,8 +14,10 @@ import androidx.ui.layout.WidthSpacer
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.surface.Surface
 import androidx.ui.res.imageResource
+import androidx.ui.tooling.preview.Preview
 import com.github.zsoltk.pokedex.R
 
+@Preview
 @Composable
 fun RoundedSearchBar() {
     val colors = +MaterialTheme.colors()
