@@ -32,7 +32,7 @@ fun AppContent() {
 
     FlexColumn {
         inflexible {
-            LargeAppBar(R.drawable.pokeball) {
+            LargeAppBar(background = PokeBallLarge()) {
                 Column {
                     Text(
                         text = "What Pokémon\nare you looking for?",
@@ -46,6 +46,7 @@ fun AppContent() {
                 }
             }
         }
+        
         expanded(1f) {
             Container(modifier = Spacing(24.dp)) {
                 Text("Body")
@@ -80,7 +81,10 @@ fun RoundedSearchBar() {
 }
 
 @Composable
-fun LargeAppBar(@DrawableRes backgroundImage: Int? = null, content: @Composable() () -> Unit) {
+fun LargeAppBar(
+    background: StackChildren.() -> Unit,
+    content: @Composable() () -> Unit
+) {
     val colors = +MaterialTheme.colors()
 
     Surface(
@@ -93,17 +97,38 @@ fun LargeAppBar(@DrawableRes backgroundImage: Int? = null, content: @Composable(
         )
     ) {
         Container(
-            height = 280.dp,
-            expanded = true,
-            alignment = Alignment.BottomCenter
+            height = 260.dp,
+            expanded = true
         ) {
-            backgroundImage?.let {
-                Opacity(opacity = 0.1f) {
-                    DrawImage(image = +imageResource(it))
+            Stack {
+                background()
+
+                expanded {
+                    Container(alignment = Alignment.BottomCenter) {
+                        Padding(padding = 16.dp) {
+                            content()
+                        }
+                    }
                 }
             }
-            Padding(padding = 16.dp) {
-                content()
+        }
+    }
+}
+
+@Composable
+fun PokeBallLarge(): StackChildren.() -> Unit = {
+    positioned(
+        topInset =(-90).dp,
+        rightInset = (-90).dp
+    ) {
+        Container(
+            width = 260.dp,
+            height = 260.dp,
+            expanded = true,
+            alignment = Alignment.TopRight
+        ) {
+            Opacity(opacity = 0.1f) {
+                DrawImage(image = +imageResource(R.drawable.pokeball))
             }
         }
     }
