@@ -23,29 +23,39 @@ import com.github.zsoltk.pokedex.main.pokeball.PokeBall
 
 @Composable
 fun MainAppBar() {
-    val colors = +MaterialTheme.colors()
-    val typography = +MaterialTheme.typography()
-
     LargeAppBar(background = PokeBallBg()) {
-        Padding(padding = 16.dp) {
+        Padding(
+            top = 32.dp,
+            left = 32.dp,
+            right = 32.dp,
+            bottom = 16.dp
+        ) {
             Column {
-                Text(
-                    text = "What Pokémon\nare you looking for?",
-                    style = typography.h4.copy(
-                        color = colors.onSurface,
-                        fontWeight = FontWeight.Bold
-                    ),
-                    modifier = Spacing(
-                        top = 64.dp,
-                        bottom = 24.dp
-                    )
-                )
+                Title(text = "What Pokémon\nare you looking for?")
                 RoundedSearchBar()
-                HeightSpacer(height = 16.dp)
+                HeightSpacer(height = 32.dp)
                 Menu()
             }
         }
     }
+}
+
+@Composable
+private fun Title(text: String) {
+    val colors = +MaterialTheme.colors()
+    val typography = +MaterialTheme.typography()
+
+    Text(
+        text = text,
+        style = typography.h4.copy(
+            color = colors.onSurface,
+            fontWeight = FontWeight.Bold
+        ),
+        modifier = Spacing(
+            top = 64.dp,
+            bottom = 24.dp
+        )
+    )
 }
 
 @Composable

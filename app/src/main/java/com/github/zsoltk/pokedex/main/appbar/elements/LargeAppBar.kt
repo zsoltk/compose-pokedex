@@ -5,7 +5,6 @@ import androidx.compose.unaryPlus
 import androidx.ui.core.Alignment
 import androidx.ui.core.dp
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
-import androidx.ui.layout.Padding
 import androidx.ui.layout.Stack
 import androidx.ui.layout.StackChildren
 import androidx.ui.material.MaterialTheme
@@ -29,9 +28,7 @@ fun LargeAppBar(
             background()
 
             aligned(alignment = Alignment.TopCenter) {
-                Padding(padding = 16.dp) {
-                    content()
-                }
+                content()
             }
         }
     }
