@@ -6,6 +6,7 @@ import androidx.compose.Composable
 import androidx.ui.core.setContent
 import androidx.ui.material.MaterialTheme
 import androidx.ui.tooling.preview.Preview
+import com.github.zsoltk.pokedex.pokedex.PokeDexScreen
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +21,8 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun AppContent() {
-    MainScreen()
+//    MainScreen()
+    PokeDexScreen()
 }
 
 @Preview
