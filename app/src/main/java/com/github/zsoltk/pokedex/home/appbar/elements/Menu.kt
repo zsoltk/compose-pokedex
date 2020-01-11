@@ -1,4 +1,4 @@
-package com.github.zsoltk.pokedex.main.appbar.elements
+package com.github.zsoltk.pokedex.home.appbar.elements
 
 import androidx.compose.Composable
 import androidx.compose.unaryPlus
@@ -10,10 +10,11 @@ import androidx.ui.layout.TableColumnWidth
 import androidx.ui.res.colorResource
 import androidx.ui.tooling.preview.Preview
 import com.github.zsoltk.pokedex.R
+import com.github.zsoltk.pokedex.home.Home
+import com.github.zsoltk.pokedex.home.Home.MenuItem
 
-@Preview
 @Composable
-fun Menu() {
+fun Menu(onMenuItemSelected: (MenuItem) -> Unit) {
     val leftCell = EdgeInsets(right = 5.dp, bottom = 10.dp)
     val rightCell = EdgeInsets(left = 5.dp, bottom = 10.dp)
 
@@ -23,7 +24,9 @@ fun Menu() {
         columnWidth = { TableColumnWidth.Fraction(0.5f) }
     ) {
         tableRow {
-            MenuItem("Pokedex", +colorResource(R.color.teal), leftCell)
+            MenuItem("Pokedex", +colorResource(R.color.teal), leftCell) {
+                onMenuItemSelected(MenuItem.Pokedex)
+            }
             MenuItem("Moves", +colorResource(R.color.red), rightCell)
         }
         tableRow {
@@ -35,4 +38,10 @@ fun Menu() {
             MenuItem("Type charts", +colorResource(R.color.brown), rightCell)
         }
     }
+}
+
+@Preview
+@Composable
+fun PreviewMenu() {
+    Menu {}
 }

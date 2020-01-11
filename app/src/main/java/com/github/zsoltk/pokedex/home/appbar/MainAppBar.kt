@@ -1,4 +1,4 @@
-package com.github.zsoltk.pokedex.main.appbar
+package com.github.zsoltk.pokedex.home.appbar
 
 import androidx.compose.Composable
 import androidx.compose.unaryPlus
@@ -16,13 +16,14 @@ import androidx.ui.material.MaterialTheme
 import androidx.ui.res.colorResource
 import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
-import com.github.zsoltk.pokedex.main.appbar.elements.LargeAppBar
-import com.github.zsoltk.pokedex.main.appbar.elements.Menu
-import com.github.zsoltk.pokedex.main.appbar.elements.RoundedSearchBar
-import com.github.zsoltk.pokedex.main.pokeball.PokeBall
+import com.github.zsoltk.pokedex.home.Home
+import com.github.zsoltk.pokedex.home.appbar.elements.LargeAppBar
+import com.github.zsoltk.pokedex.home.appbar.elements.Menu
+import com.github.zsoltk.pokedex.home.appbar.elements.RoundedSearchBar
+import com.github.zsoltk.pokedex.home.pokeball.PokeBall
 
 @Composable
-fun MainAppBar() {
+fun MainAppBar(onMenuItemSelected: (Home.MenuItem) -> Unit) {
     LargeAppBar(background = PokeBallBg()) {
         Padding(
             top = 32.dp,
@@ -34,7 +35,7 @@ fun MainAppBar() {
                 Title(text = "What Pokémon\nare you looking for?")
                 RoundedSearchBar()
                 HeightSpacer(height = 32.dp)
-                Menu()
+                Menu(onMenuItemSelected)
             }
         }
     }
@@ -78,7 +79,7 @@ private fun PokeBallBg(): StackChildren.() -> Unit = {
 @Preview
 @Composable
 fun PreviewMainAppBar() {
-    MainAppBar()
+    MainAppBar(onMenuItemSelected = {})
 }
 
 

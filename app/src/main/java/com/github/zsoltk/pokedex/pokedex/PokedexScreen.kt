@@ -11,7 +11,6 @@ import androidx.ui.foundation.Clickable
 import androidx.ui.foundation.DrawImage
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
-import androidx.ui.layout.AspectRatio
 import androidx.ui.layout.Column
 import androidx.ui.layout.Container
 import androidx.ui.layout.ExpandedWidth
@@ -32,17 +31,23 @@ import androidx.ui.text.font.FontFamily
 import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
 import com.github.zsoltk.pokedex.R
-import com.github.zsoltk.pokedex.main.pokeball.PokeBall
+import com.github.zsoltk.pokedex.home.pokeball.PokeBall
 
-@Composable
-fun PokeDexScreen() {
-    TableRenderer(cols = 2, items = pokemons) {
-        Padding(4.dp) {
-            Clickable(onClick = { }) {
-                PokeDexCard(it)
+interface Pokedex {
+
+    companion object {
+        @Composable
+        fun Content() {
+            TableRenderer(cols = 2, items = pokemons) {
+                Padding(4.dp) {
+                    Clickable(onClick = { }) {
+                        PokeDexCard(it)
+                    }
+                }
             }
         }
     }
+
 }
 
 @Composable
@@ -181,6 +186,6 @@ private fun TypeLabel(text: String) {
 @Composable
 private fun PreviewPokemonCard() {
     Container(width = 640.dp) {
-        PokeDexScreen()
+        Pokedex.Content()
     }
 }

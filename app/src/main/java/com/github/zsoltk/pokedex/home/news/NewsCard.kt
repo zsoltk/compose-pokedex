@@ -1,4 +1,4 @@
-package com.github.zsoltk.pokedex.main.news
+package com.github.zsoltk.pokedex.home.news
 
 import androidx.compose.Composable
 import androidx.compose.unaryPlus
@@ -10,7 +10,6 @@ import androidx.ui.layout.Column
 import androidx.ui.layout.Container
 import androidx.ui.layout.ExpandedWidth
 import androidx.ui.layout.FlexRow
-import androidx.ui.layout.HeightSpacer
 import androidx.ui.layout.Padding
 import androidx.ui.layout.Spacing
 import androidx.ui.material.MaterialTheme

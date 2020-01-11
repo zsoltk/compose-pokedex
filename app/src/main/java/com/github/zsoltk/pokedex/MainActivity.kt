@@ -6,29 +6,33 @@ import androidx.compose.Composable
 import androidx.ui.core.setContent
 import androidx.ui.material.MaterialTheme
 import androidx.ui.tooling.preview.Preview
-import com.github.zsoltk.pokedex.pokedex.PokeDexScreen
+import com.github.zsoltk.compose.backpress.BackPressHandler
 
 class MainActivity : AppCompatActivity() {
+    private val backPressHandler = BackPressHandler()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MaterialTheme(colors = lightThemeColors) {
-                AppContent()
+                backPressHandler.Provider {
+                    Root.Content()
+                }
             }
         }
     }
-}
 
-@Composable
-fun AppContent() {
-//    MainScreen()
-    PokeDexScreen()
+    override fun onBackPressed() {
+        if (!backPressHandler.handle()) {
+            super.onBackPressed()
+        }
+    }
 }
 
 @Preview
 @Composable
 fun DefaultPreview() {
     MaterialTheme(colors = lightThemeColors) {
-        AppContent()
+        Root.Content()
     }
 }

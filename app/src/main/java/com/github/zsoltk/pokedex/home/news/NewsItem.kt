@@ -1,4 +1,4 @@
-package com.github.zsoltk.pokedex.main.news
+package com.github.zsoltk.pokedex.home.news
 
 data class NewsItem(
     val title: String = "Pokémon Rumble Rush Arrives Soon",
