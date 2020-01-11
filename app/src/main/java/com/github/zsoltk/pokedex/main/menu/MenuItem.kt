@@ -10,18 +10,17 @@ import androidx.ui.graphics.Color
 import androidx.ui.layout.*
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.surface.Surface
+import androidx.ui.tooling.preview.Preview
 
 @Composable
-fun MenuItem(text: String, color: Color) {
-    Padding(padding = 5.dp) {
+fun MenuItem(text: String, color: Color, edgeInsets: EdgeInsets) {
+    Padding(edgeInsets) {
         Surface(
             color = color,
             shape = RoundedCornerShape(16.dp)
         ) {
             Stack(
-                modifier = Height(
-                    64.dp
-                ) wraps ExpandedWidth
+                modifier = Height(64.dp) wraps ExpandedWidth
             ) {
                 aligned(Alignment.CenterLeft) {
                     Padding(left = 16.dp) {
@@ -48,4 +47,14 @@ fun MenuItem(text: String, color: Color) {
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun PreviewMenuItem() {
+    MenuItem(
+        "MenuItem",
+        Color(0xFFFA6555),
+        EdgeInsets()
+    )
 }
