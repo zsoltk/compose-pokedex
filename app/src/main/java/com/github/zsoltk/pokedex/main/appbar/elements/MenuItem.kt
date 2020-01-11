@@ -9,6 +9,7 @@ import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.layout.*
 import androidx.ui.material.MaterialTheme
+import androidx.ui.material.ripple.Ripple
 import androidx.ui.material.surface.Surface
 import androidx.ui.tooling.preview.Preview
 import com.github.zsoltk.pokedex.main.pokeball.PokeBall
@@ -20,29 +21,31 @@ fun MenuItem(text: String, color: Color, edgeInsets: EdgeInsets) {
             color = color,
             shape = RoundedCornerShape(16.dp)
         ) {
-            Stack(
-                modifier = Height(64.dp) wraps ExpandedWidth
-            ) {
-                aligned(Alignment.CenterLeft) {
-                    Padding(left = 16.dp) {
-                        Text(
-                            text = text,
-                            style = (+MaterialTheme.typography()).body1.copy(
-                                color = Color.White
+            Ripple(bounded = true) {
+                Stack(
+                    modifier = Height(64.dp) wraps ExpandedWidth
+                ) {
+                    aligned(Alignment.CenterLeft) {
+                        Padding(left = 16.dp) {
+                            Text(
+                                text = text,
+                                style = (+MaterialTheme.typography()).body1.copy(
+                                    color = Color.White
+                                )
                             )
-                        )
+                        }
                     }
-                }
 
-                positioned(topInset = (-40).dp, leftInset = (-30).dp) {
-                    Container(width = 60.dp, height = 60.dp) {
-                        PokeBall(Color.White, 0.15f)
+                    positioned(topInset = (-40).dp, leftInset = (-30).dp) {
+                        Container(width = 60.dp, height = 60.dp) {
+                            PokeBall(Color.White, 0.15f)
+                        }
                     }
-                }
 
-                positioned(rightInset = (-20).dp) {
-                    Container(width = 96.dp, height = 96.dp) {
-                        PokeBall(Color.White, 0.15f)
+                    positioned(rightInset = (-20).dp) {
+                        Container(width = 96.dp, height = 96.dp) {
+                            PokeBall(Color.White, 0.15f)
+                        }
                     }
                 }
             }
