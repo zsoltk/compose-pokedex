@@ -1,4 +1,4 @@
-package com.github.zsoltk.pokedex.main.menu
+package com.github.zsoltk.pokedex.main.appbar.elements
 
 import androidx.compose.Composable
 import androidx.compose.unaryPlus
@@ -11,6 +11,7 @@ import androidx.ui.layout.*
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.surface.Surface
 import androidx.ui.tooling.preview.Preview
+import com.github.zsoltk.pokedex.main.pokeball.PokeBall
 
 @Composable
 fun MenuItem(text: String, color: Color, edgeInsets: EdgeInsets) {
@@ -35,13 +36,13 @@ fun MenuItem(text: String, color: Color, edgeInsets: EdgeInsets) {
 
                 positioned(topInset = (-40).dp, leftInset = (-30).dp) {
                     Container(width = 60.dp, height = 60.dp) {
-                        WhiteTranslucentPokeBall()
+                        PokeBall(Color.White, 0.15f)
                     }
                 }
 
                 positioned(rightInset = (-20).dp) {
                     Container(width = 96.dp, height = 96.dp) {
-                        WhiteTranslucentPokeBall()
+                        PokeBall(Color.White, 0.15f)
                     }
                 }
             }

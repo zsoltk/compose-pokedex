@@ -1,4 +1,4 @@
-package com.github.zsoltk.pokedex.main.menu
+package com.github.zsoltk.pokedex.main.appbar.elements
 
 import androidx.compose.Composable
 import androidx.compose.unaryPlus
