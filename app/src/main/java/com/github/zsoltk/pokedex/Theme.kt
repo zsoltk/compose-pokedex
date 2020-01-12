@@ -11,13 +11,12 @@ import androidx.ui.layout.Arrangement
 import androidx.ui.layout.Container
 import androidx.ui.layout.Row
 import androidx.ui.material.ColorPalette
-import androidx.ui.res.colorResource
 import androidx.ui.tooling.preview.Preview
 
 val lightThemeColors = ColorPalette(
-    primary = Color(0xFFFA6555),
+    primary = Color.White,
     primaryVariant = Color(0xFFC20029),
-    onPrimary = Color.White,
+    onPrimary = Color.Black,
     secondary = Color.White,
     onSecondary = Color.Black,
     background = Color(0xFFEEEEEE),

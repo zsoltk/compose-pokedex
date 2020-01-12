@@ -1,17 +1,16 @@
 package com.github.zsoltk.pokedex.common
 
 import androidx.compose.Composable
+import androidx.ui.core.Modifier
 import androidx.ui.core.Text
-import androidx.ui.core.dp
 import androidx.ui.core.sp
 import androidx.ui.graphics.Color
-import androidx.ui.layout.Spacing
 import androidx.ui.text.TextStyle
 import androidx.ui.text.font.FontFamily
 import androidx.ui.text.font.FontWeight
 
 @Composable
-fun Title(text: String, color: Color) {
+fun Title(text: String, color: Color, modifier: Modifier = Modifier.None) {
     Text(
         text = text,
         style = TextStyle(
@@ -20,9 +19,6 @@ fun Title(text: String, color: Color) {
             fontSize = 30.sp,
             color = color
         ),
-        modifier = Spacing(
-            top = 64.dp,
-            bottom = 24.dp
-        )
+        modifier = modifier
     )
 }

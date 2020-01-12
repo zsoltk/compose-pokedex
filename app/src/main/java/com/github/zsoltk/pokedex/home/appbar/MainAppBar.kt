@@ -6,6 +6,7 @@ import androidx.ui.core.dp
 import androidx.ui.layout.Column
 import androidx.ui.layout.HeightSpacer
 import androidx.ui.layout.Padding
+import androidx.ui.layout.Spacing
 import androidx.ui.material.MaterialTheme
 import androidx.ui.tooling.preview.Preview
 import com.github.zsoltk.pokedex.common.Title
@@ -29,7 +30,11 @@ fun MainAppBar(onMenuItemSelected: (Home.MenuItem) -> Unit) {
             Column {
                 Title(
                     text = "What Pokémon\nare you looking for?",
-                    color = colors.onSurface
+                    color = colors.onSurface,
+                    modifier = Spacing(
+                        top = 64.dp,
+                        bottom = 24.dp
+                    )
                 )
                 RoundedSearchBar()
                 HeightSpacer(height = 32.dp)

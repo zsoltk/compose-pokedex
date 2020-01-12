@@ -2,7 +2,6 @@ package com.github.zsoltk.pokedex
 
 import androidx.compose.Composable
 import com.github.zsoltk.compose.router.Router
-import com.github.zsoltk.pokedex.entity.Pokemon
 import com.github.zsoltk.pokedex.home.Home
 import com.github.zsoltk.pokedex.home.Home.MenuItem
 import com.github.zsoltk.pokedex.pokedex.Pokedex

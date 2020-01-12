@@ -131,8 +131,6 @@ private fun PokeDexCardContent(pokemon: Pokemon) {
 
 @Composable
 private fun PokemonName(text: String?) {
-    val typography = +MaterialTheme.typography()
-
     Text(
         text = text ?: "",
         style = TextStyle(
