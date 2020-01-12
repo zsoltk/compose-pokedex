@@ -2,6 +2,7 @@ package com.github.zsoltk.pokedex.pokedex
 
 import androidx.compose.Composable
 import androidx.compose.unaryPlus
+import androidx.ui.core.Alignment
 import androidx.ui.core.Opacity
 import androidx.ui.core.Text
 import androidx.ui.core.dp
@@ -18,6 +19,7 @@ import androidx.ui.layout.HeightSpacer
 import androidx.ui.layout.Padding
 import androidx.ui.layout.Spacing
 import androidx.ui.layout.Stack
+import androidx.ui.layout.StackChildren
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.ripple.Ripple
 import androidx.ui.material.surface.Surface
@@ -29,18 +31,37 @@ import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
 import com.github.zsoltk.pokedex.R
 import com.github.zsoltk.pokedex.common.PokeBall
+import com.github.zsoltk.pokedex.common.PokeBallBackground
 import com.github.zsoltk.pokedex.common.TableRenderer
+import com.github.zsoltk.pokedex.common.Title
 import com.github.zsoltk.pokedex.entity.Pokemon
 import com.github.zsoltk.pokedex.entity.color
 import com.github.zsoltk.pokedex.entity.pokemons
+import com.github.zsoltk.pokedex.lightThemeColors
 
 interface Pokedex {
 
     companion object {
         @Composable
         fun Content() {
-            TableRenderer(cols = 2, items = pokemons) { cell ->
-                Padding(4.dp) {
+            Surface {
+                Stack {
+                    PokeBallBackground()
+                    PokedexContent()
+                }
+            }
+
+        }
+    }
+}
+
+@Composable
+private fun StackChildren.PokedexContent() {
+    aligned(Alignment.TopLeft) {
+        Padding(padding = 32.dp) {
+            Column {
+                Title(text = "Pokedex", color = (+MaterialTheme.colors()).onSurface)
+                TableRenderer(cols = 2, cellSpacing = 4.dp, items = pokemons) { cell ->
                     Clickable(onClick = { }) {
                         PokeDexCard(cell.item)
                     }
@@ -48,7 +69,6 @@ interface Pokedex {
             }
         }
     }
-
 }
 
 @Composable
@@ -159,7 +179,9 @@ private fun TypeLabel(text: String) {
 @Preview
 @Composable
 private fun PreviewPokemonCard() {
-    Container(width = 640.dp) {
-        Pokedex.Content()
+    MaterialTheme(lightThemeColors) {
+        Container(width = 640.dp) {
+            Pokedex.Content()
+        }
     }
 }
