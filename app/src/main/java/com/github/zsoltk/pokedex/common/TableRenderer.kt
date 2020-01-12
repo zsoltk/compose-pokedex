@@ -7,6 +7,15 @@ import androidx.ui.layout.Padding
 import androidx.ui.layout.Table
 import androidx.ui.layout.TableColumnWidth
 
+/**
+ * Renders a list of items into a table.
+ *
+ * @param cols How many columns to render
+ * @param items The list of items you want to render as a table
+ * @param cellSpacing The amount of padding you want to have between cells. This padding will only
+ * be applied between cells, i.e. no padding will be added at the outer edges of the table. You
+ * can add that separately by wrapping the whole [TableRenderer] with [Padding].
+ */
 @Composable
 fun <T> TableRenderer(cols: Int, items: List<T>, cellSpacing: Dp, cellRenderer: @Composable() (Cell<T>) -> Unit) {
     val rows = items.size / cols
@@ -65,10 +74,5 @@ data class Cell<T>(
      * The column index in which this table cell is rendered.
      */
     val colIndex: Int
-) {
-    fun isFirstRow(): Boolean =
-        rowIndex == 0
+)
 
-    fun isFirstColumn(): Boolean =
-        colIndex == 0
-}
