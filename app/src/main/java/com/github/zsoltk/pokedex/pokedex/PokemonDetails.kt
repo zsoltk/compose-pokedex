@@ -28,7 +28,10 @@ import androidx.ui.text.TextStyle
 import androidx.ui.text.font.FontFamily
 import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
+import com.github.zsoltk.pokedex.R
+import com.github.zsoltk.pokedex.common.PokeBall
 import com.github.zsoltk.pokedex.common.PokemonTypeLabels
+import com.github.zsoltk.pokedex.common.Rotate
 import com.github.zsoltk.pokedex.common.Title
 import com.github.zsoltk.pokedex.common.TypeLabelMetrics.Companion.MEDIUM
 import com.github.zsoltk.pokedex.entity.Pokemon
@@ -46,11 +49,22 @@ interface PokemonDetails {
         fun Content(pokemon: Pokemon) {
             Surface(color = +colorResource(pokemon.color())) {
                 Stack {
+                    RotatingPokeBall()
                     HeaderLeft(pokemon)
                     HeaderRight(pokemon)
                     CardContent(pokemon)
                     Image(pokemon)
                 }
+            }
+        }
+    }
+}
+
+private fun StackChildren.RotatingPokeBall() {
+    positioned(topInset = 140.dp) {
+        Container(width = 200.dp, height = 200.dp) {
+            Rotate(duration = 4000) {
+                PokeBall(tint = +colorResource(R.color.lightGrey), opacity = 0.25f)
             }
         }
     }
