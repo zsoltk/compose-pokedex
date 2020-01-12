@@ -81,14 +81,14 @@ fun PokeDexCard(pokemon: Pokemon) {
             Stack(
                 modifier = Height(120.dp) wraps ExpandedWidth
             ) {
-                positioned(topInset = 8.dp, leftInset = 8.dp) {
+                positioned(topInset = 8.dp, leftInset = 12.dp) {
                     Column {
                         PokemonName(pokemon.name)
                         PokemonTypes(pokemon.typeofpokemon)
                     }
                 }
 
-                positioned(topInset = 8.dp, rightInset = 8.dp) {
+                positioned(topInset = 10.dp, rightInset = 8.dp) {
                     PokemonId(pokemon.id)
                 }
 
@@ -102,8 +102,8 @@ fun PokeDexCard(pokemon: Pokemon) {
                 }
 
                 pokemon.image?.let { image ->
-                    positioned(bottomInset = (0).dp, rightInset = (10).dp) {
-                        Container(width = 80.dp, height = 80.dp) {
+                    positioned(bottomInset = (8).dp, rightInset = (8).dp) {
+                        Container(width = 72.dp, height = 72.dp) {
                             DrawImage(image = +imageResource(image))
                         }
                     }
@@ -119,8 +119,10 @@ private fun PokemonName(text: String?) {
 
     Text(
         text = text ?: "",
-        style = typography.h6.copy(
+        style = TextStyle(
+            fontFamily = FontFamily("Roboto"),
             fontWeight = FontWeight.Bold,
+            fontSize = 16.sp,
             color = +colorResource(R.color.white_1000)
         ),
         modifier = Spacing(bottom = 8.dp)
@@ -129,14 +131,13 @@ private fun PokemonName(text: String?) {
 
 @Composable
 private fun PokemonId(text: String?) {
-    val typography = +MaterialTheme.typography()
-
-    Opacity(opacity = 0.2f) {
+    Opacity(opacity = 0.1f) {
         Text(
             text = text ?: "",
-            style = typography.h6.copy(
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold
+            style = TextStyle(
+                fontFamily = FontFamily("Roboto"),
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp
             )
         )
     }
