@@ -39,15 +39,15 @@ import com.github.zsoltk.pokedex.entity.color
 import com.github.zsoltk.pokedex.entity.pokemons
 import com.github.zsoltk.pokedex.lightThemeColors
 
-interface Pokedex {
+interface PokemonList {
 
     companion object {
         @Composable
-        fun Content() {
+        fun Content(onPokemonSelected: (Pokemon) -> Unit) {
             Surface {
                 Stack {
                     PokeBallBackground()
-                    PokedexContent()
+                    PokedexContent(onPokemonSelected)
                 }
             }
 
@@ -56,15 +56,13 @@ interface Pokedex {
 }
 
 @Composable
-private fun StackChildren.PokedexContent() {
+private fun StackChildren.PokedexContent(onPokemonSelected: (Pokemon) -> Unit) {
     aligned(Alignment.TopLeft) {
         Padding(padding = 32.dp) {
             Column {
                 Title(text = "Pokedex", color = (+MaterialTheme.colors()).onSurface)
                 TableRenderer(cols = 2, cellSpacing = 4.dp, items = pokemons) { cell ->
-                    Clickable(onClick = { }) {
-                        PokeDexCard(cell.item)
-                    }
+                    PokeDexCard(cell.item, onPokemonSelected)
                 }
             }
         }
@@ -72,41 +70,51 @@ private fun StackChildren.PokedexContent() {
 }
 
 @Composable
-fun PokeDexCard(pokemon: Pokemon) {
+fun PokeDexCard(
+    pokemon: Pokemon,
+    onPokemonSelected: (Pokemon) -> Unit
+) {
     Surface(
         color = +colorResource(pokemon.color()),
         shape = RoundedCornerShape(16.dp)
     ) {
         Ripple(bounded = true) {
-            Stack(
-                modifier = Height(120.dp) wraps ExpandedWidth
-            ) {
-                positioned(topInset = 8.dp, leftInset = 12.dp) {
-                    Column {
-                        PokemonName(pokemon.name)
-                        PokemonTypes(pokemon.typeofpokemon)
-                    }
-                }
+            Clickable(onClick = { onPokemonSelected(pokemon) }) {
+                PokeDexCardContent(pokemon)
+            }
+        }
+    }
+}
 
-                positioned(topInset = 10.dp, rightInset = 8.dp) {
-                    PokemonId(pokemon.id)
-                }
+@Composable
+private fun PokeDexCardContent(pokemon: Pokemon) {
+    Stack(
+        modifier = Height(120.dp) wraps ExpandedWidth
+    ) {
+        positioned(topInset = 8.dp, leftInset = 12.dp) {
+            Column {
+                PokemonName(pokemon.name)
+                PokemonTypes(pokemon.typeofpokemon)
+            }
+        }
 
-                positioned(bottomInset = (-10).dp, rightInset = (-5).dp) {
-                    Container(width = 96.dp, height = 96.dp) {
-                        PokeBall(
-                            Color.White,
-                            0.25f
-                        )
-                    }
-                }
+        positioned(topInset = 10.dp, rightInset = 8.dp) {
+            PokemonId(pokemon.id)
+        }
 
-                pokemon.image?.let { image ->
-                    positioned(bottomInset = (8).dp, rightInset = (8).dp) {
-                        Container(width = 72.dp, height = 72.dp) {
-                            DrawImage(image = +imageResource(image))
-                        }
-                    }
+        positioned(bottomInset = (-10).dp, rightInset = (-5).dp) {
+            Container(width = 96.dp, height = 96.dp) {
+                PokeBall(
+                    Color.White,
+                    0.25f
+                )
+            }
+        }
+
+        pokemon.image?.let { image ->
+            positioned(bottomInset = (8).dp, rightInset = (8).dp) {
+                Container(width = 72.dp, height = 72.dp) {
+                    DrawImage(image = +imageResource(image))
                 }
             }
         }
