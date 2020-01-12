@@ -15,7 +15,6 @@ import androidx.ui.layout.Column
 import androidx.ui.layout.Container
 import androidx.ui.layout.ExpandedWidth
 import androidx.ui.layout.Height
-import androidx.ui.layout.HeightSpacer
 import androidx.ui.layout.Padding
 import androidx.ui.layout.Spacing
 import androidx.ui.layout.Stack
@@ -32,8 +31,10 @@ import androidx.ui.tooling.preview.Preview
 import com.github.zsoltk.pokedex.R
 import com.github.zsoltk.pokedex.common.PokeBall
 import com.github.zsoltk.pokedex.common.PokeBallBackground
+import com.github.zsoltk.pokedex.common.PokemonTypeLabels
 import com.github.zsoltk.pokedex.common.TableRenderer
 import com.github.zsoltk.pokedex.common.Title
+import com.github.zsoltk.pokedex.common.TypeLabelMetrics.Companion.SMALL
 import com.github.zsoltk.pokedex.entity.Pokemon
 import com.github.zsoltk.pokedex.entity.color
 import com.github.zsoltk.pokedex.entity.pokemons
@@ -60,7 +61,14 @@ private fun StackChildren.PokedexContent(onPokemonSelected: (Pokemon) -> Unit) {
     aligned(Alignment.TopLeft) {
         Padding(padding = 32.dp) {
             Column {
-                Title(text = "Pokedex", color = (+MaterialTheme.colors()).onSurface)
+                Title(
+                    text = "Pokedex",
+                    color = (+MaterialTheme.colors()).onSurface,
+                    modifier = Spacing(
+                        top = 64.dp,
+                        bottom = 24.dp
+                    )
+                )
                 TableRenderer(cols = 2, cellSpacing = 4.dp, items = pokemons) { cell ->
                     PokeDexCard(cell.item, onPokemonSelected)
                 }
@@ -94,7 +102,7 @@ private fun PokeDexCardContent(pokemon: Pokemon) {
         positioned(topInset = 8.dp, leftInset = 12.dp) {
             Column {
                 PokemonName(pokemon.name)
-                PokemonTypes(pokemon.typeofpokemon)
+                PokemonTypeLabels(pokemon.typeOfPokemon, SMALL)
             }
         }
 
@@ -146,40 +154,6 @@ private fun PokemonId(text: String?) {
                 fontFamily = FontFamily("Roboto"),
                 fontWeight = FontWeight.Bold,
                 fontSize = 14.sp
-            )
-        )
-    }
-}
-
-@Composable
-private fun PokemonTypes(types: List<String>?) {
-    Column {
-        types?.forEach {
-            Surface(
-                color = Color(0x38FFFFFF),
-                shape = RoundedCornerShape(24.dp)
-            ) {
-                TypeLabel(it)
-            }
-            HeightSpacer(height = 8.dp)
-        }
-    }
-}
-
-@Composable
-private fun TypeLabel(text: String) {
-    Padding(
-        top = 3.dp,
-        bottom = 3.dp,
-        left = 8.dp,
-        right = 8.dp
-    ) {
-        Text(
-            text = text,
-            style = TextStyle(
-                fontFamily = FontFamily("Roboto"),
-                fontSize = 9.sp,
-                color = +colorResource(R.color.white_1000)
             )
         )
     }
