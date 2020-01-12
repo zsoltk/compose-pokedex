@@ -142,21 +142,11 @@ private fun PokemonId(text: String?) {
 private fun PokemonTypes(types: List<String>?) {
     Column {
         types?.forEach {
-            Stack {
-                aligned(Alignment.Center) {
-                    Opacity(opacity = 0.25f) {
-                        Surface(
-                            color = Color.White,
-                            shape = RoundedCornerShape(24.dp)
-                        ) {
-                            TypeLabel(it)
-                        }
-                    }
-                }
-
-                aligned(Alignment.Center) {
-                    TypeLabel(it)
-                }
+            Surface(
+                color = Color(0x38FFFFFF),
+                shape = RoundedCornerShape(24.dp)
+            ) {
+                TypeLabel(it)
             }
             HeightSpacer(height = 8.dp)
         }
@@ -166,8 +156,8 @@ private fun PokemonTypes(types: List<String>?) {
 @Composable
 private fun TypeLabel(text: String) {
     Padding(
-        top = 4.dp,
-        bottom = 4.dp,
+        top = 3.dp,
+        bottom = 3.dp,
         left = 8.dp,
         right = 8.dp
     ) {
@@ -175,7 +165,7 @@ private fun TypeLabel(text: String) {
             text = text,
             style = TextStyle(
                 fontFamily = FontFamily("Roboto"),
-                fontSize = 10.sp,
+                fontSize = 9.sp,
                 color = +colorResource(R.color.white_1000)
             )
         )
