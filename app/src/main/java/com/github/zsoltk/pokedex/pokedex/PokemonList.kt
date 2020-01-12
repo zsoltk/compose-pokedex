@@ -9,6 +9,7 @@ import androidx.ui.core.dp
 import androidx.ui.core.sp
 import androidx.ui.foundation.Clickable
 import androidx.ui.foundation.DrawImage
+import androidx.ui.foundation.VerticalScroller
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Column
@@ -51,7 +52,6 @@ interface PokemonList {
                     PokedexContent(onPokemonSelected)
                 }
             }
-
         }
     }
 }
@@ -59,18 +59,20 @@ interface PokemonList {
 @Composable
 private fun StackChildren.PokedexContent(onPokemonSelected: (Pokemon) -> Unit) {
     aligned(Alignment.TopLeft) {
-        Padding(padding = 32.dp) {
-            Column {
-                Title(
-                    text = "Pokedex",
-                    color = (+MaterialTheme.colors()).onSurface,
-                    modifier = Spacing(
-                        top = 64.dp,
-                        bottom = 24.dp
+        VerticalScroller {
+            Padding(padding = 32.dp) {
+                Column {
+                    Title(
+                        text = "Pokedex",
+                        color = (+MaterialTheme.colors()).onSurface,
+                        modifier = Spacing(
+                            top = 64.dp,
+                            bottom = 24.dp
+                        )
                     )
-                )
-                TableRenderer(cols = 2, cellSpacing = 4.dp, items = pokemons) { cell ->
-                    PokeDexCard(cell.item, onPokemonSelected)
+                    TableRenderer(cols = 2, cellSpacing = 4.dp, items = pokemons) { cell ->
+                        PokeDexCard(cell.item, onPokemonSelected)
+                    }
                 }
             }
         }
