@@ -18,6 +18,8 @@ import androidx.ui.res.colorResource
 import androidx.ui.res.imageResource
 import androidx.ui.text.font.FontWeight
 import com.github.zsoltk.pokedex.R
+import com.github.zsoltk.pokedex.common.HorizontalRuler
+import com.github.zsoltk.pokedex.entity.NewsItem
 
 @Composable
 fun NewsCard(newsItem: NewsItem) {
@@ -38,7 +40,11 @@ fun NewsCard(newsItem: NewsItem) {
         }
 
         Padding(top = 16.dp, bottom = 16.dp) {
-            HorizontalRuler(color = +colorResource(R.color.grey_200))
+            HorizontalRuler(
+                color = +colorResource(
+                    R.color.grey_200
+                )
+            )
         }
     }
 }

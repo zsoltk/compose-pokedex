@@ -15,6 +15,7 @@ import androidx.ui.res.colorResource
 import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
 import com.github.zsoltk.pokedex.R
+import com.github.zsoltk.pokedex.entity.NewsItem
 
 @Preview
 @Composable

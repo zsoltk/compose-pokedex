@@ -1,4 +1,4 @@
-package com.github.zsoltk.pokedex.home.news
+package com.github.zsoltk.pokedex.common
 
 import androidx.compose.Composable
 import androidx.ui.core.Dp

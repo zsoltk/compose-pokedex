@@ -2,7 +2,6 @@ package com.github.zsoltk.pokedex.pokedex
 
 import androidx.compose.Composable
 import androidx.compose.unaryPlus
-import androidx.ui.core.Alignment
 import androidx.ui.core.Opacity
 import androidx.ui.core.Text
 import androidx.ui.core.dp
@@ -19,8 +18,6 @@ import androidx.ui.layout.HeightSpacer
 import androidx.ui.layout.Padding
 import androidx.ui.layout.Spacing
 import androidx.ui.layout.Stack
-import androidx.ui.layout.Table
-import androidx.ui.layout.TableColumnWidth
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.ripple.Ripple
 import androidx.ui.material.surface.Surface
@@ -31,14 +28,21 @@ import androidx.ui.text.font.FontFamily
 import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
 import com.github.zsoltk.pokedex.R
-import com.github.zsoltk.pokedex.home.pokeball.PokeBall
+import com.github.zsoltk.pokedex.common.PokeBall
+import com.github.zsoltk.pokedex.common.TableRenderer
+import com.github.zsoltk.pokedex.entity.Pokemon
+import com.github.zsoltk.pokedex.entity.color
+import com.github.zsoltk.pokedex.entity.pokemons
 
 interface Pokedex {
 
     companion object {
         @Composable
         fun Content() {
-            TableRenderer(cols = 2, items = pokemons) {
+            TableRenderer(
+                cols = 2,
+                items = pokemons
+            ) {
                 Padding(4.dp) {
                     Clickable(onClick = { }) {
                         PokeDexCard(it)
@@ -48,26 +52,6 @@ interface Pokedex {
         }
     }
 
-}
-
-@Composable
-fun <T> TableRenderer(cols: Int, items: List<T>, childRenderer: @Composable() (T) -> Unit) {
-    val rows = items.size / cols
-    val lastIndex = items.lastIndex
-
-    Table(columns = cols, columnWidth = { TableColumnWidth.Fraction(1.0f / cols) }) {
-        for (i in 0..rows) {
-            tableRow {
-                val startIndex = i * cols
-                val maxIndex = (i + 1) * cols - 1
-                val endIndex = if (maxIndex > lastIndex) lastIndex else maxIndex
-
-                for (j in startIndex..endIndex) {
-                    childRenderer(items[j])
-                }
-            }
-        }
-    }
 }
 
 @Composable
@@ -93,7 +77,10 @@ fun PokeDexCard(pokemon: Pokemon) {
 
                 positioned(bottomInset = (-10).dp, rightInset = (-5).dp) {
                     Container(width = 96.dp, height = 96.dp) {
-                        PokeBall(Color.White, 0.25f)
+                        PokeBall(
+                            Color.White,
+                            0.25f
+                        )
                     }
                 }
 

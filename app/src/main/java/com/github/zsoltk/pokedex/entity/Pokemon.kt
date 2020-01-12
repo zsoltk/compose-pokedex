@@ -1,4 +1,4 @@
-package com.github.zsoltk.pokedex.pokedex
+package com.github.zsoltk.pokedex.entity
 
 import com.github.zsoltk.pokedex.R
 

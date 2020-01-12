@@ -13,7 +13,7 @@ import androidx.ui.material.MaterialTheme
 import androidx.ui.material.ripple.Ripple
 import androidx.ui.material.surface.Surface
 import androidx.ui.tooling.preview.Preview
-import com.github.zsoltk.pokedex.home.pokeball.PokeBall
+import com.github.zsoltk.pokedex.common.PokeBall
 
 @Composable
 fun MenuItem(text: String, color: Color, edgeInsets: EdgeInsets, onClick: () -> Unit = {}) {
@@ -40,13 +40,19 @@ fun MenuItem(text: String, color: Color, edgeInsets: EdgeInsets, onClick: () -> 
 
                         positioned(topInset = (-40).dp, leftInset = (-30).dp) {
                             Container(width = 60.dp, height = 60.dp) {
-                                PokeBall(Color.White, 0.15f)
+                                PokeBall(
+                                    Color.White,
+                                    0.15f
+                                )
                             }
                         }
 
                         positioned(rightInset = (-20).dp) {
                             Container(width = 96.dp, height = 96.dp) {
-                                PokeBall(Color.White, 0.15f)
+                                PokeBall(
+                                    Color.White,
+                                    0.15f
+                                )
                             }
                         }
                     }
