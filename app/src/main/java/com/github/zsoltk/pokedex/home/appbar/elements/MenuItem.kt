@@ -16,44 +16,42 @@ import androidx.ui.tooling.preview.Preview
 import com.github.zsoltk.pokedex.common.PokeBall
 
 @Composable
-fun MenuItem(text: String, color: Color, edgeInsets: EdgeInsets, onClick: () -> Unit = {}) {
-    Padding(edgeInsets) {
-        Surface(
-            color = color,
-            shape = RoundedCornerShape(16.dp)
-        ) {
-            Ripple(bounded = true) {
-                Clickable(onClick) {
-                    Stack(
-                        modifier = Height(64.dp) wraps ExpandedWidth
-                    ) {
-                        aligned(Alignment.CenterLeft) {
-                            Padding(left = 16.dp) {
-                                Text(
-                                    text = text,
-                                    style = (+MaterialTheme.typography()).body1.copy(
-                                        color = Color.White
-                                    )
+fun MenuItemButton(text: String, color: Color, onClick: () -> Unit = {}) {
+    Surface(
+        color = color,
+        shape = RoundedCornerShape(16.dp)
+    ) {
+        Ripple(bounded = true) {
+            Clickable(onClick) {
+                Stack(
+                    modifier = Height(64.dp) wraps ExpandedWidth
+                ) {
+                    aligned(Alignment.CenterLeft) {
+                        Padding(left = 16.dp) {
+                            Text(
+                                text = text,
+                                style = (+MaterialTheme.typography()).body1.copy(
+                                    color = Color.White
                                 )
-                            }
+                            )
                         }
+                    }
 
-                        positioned(topInset = (-40).dp, leftInset = (-30).dp) {
-                            Container(width = 60.dp, height = 60.dp) {
-                                PokeBall(
-                                    Color.White,
-                                    0.15f
-                                )
-                            }
+                    positioned(topInset = (-40).dp, leftInset = (-30).dp) {
+                        Container(width = 60.dp, height = 60.dp) {
+                            PokeBall(
+                                Color.White,
+                                0.15f
+                            )
                         }
+                    }
 
-                        positioned(rightInset = (-20).dp) {
-                            Container(width = 96.dp, height = 96.dp) {
-                                PokeBall(
-                                    Color.White,
-                                    0.15f
-                                )
-                            }
+                    positioned(rightInset = (-20).dp) {
+                        Container(width = 96.dp, height = 96.dp) {
+                            PokeBall(
+                                Color.White,
+                                0.15f
+                            )
                         }
                     }
                 }
@@ -65,9 +63,9 @@ fun MenuItem(text: String, color: Color, edgeInsets: EdgeInsets, onClick: () -> 
 @Preview
 @Composable
 fun PreviewMenuItem() {
-    MenuItem(
-        "MenuItem",
-        Color(0xFFFA6555),
-        EdgeInsets()
+    MenuItemButton(
+        text = "MenuItem",
+        color = Color(0xFFFA6555),
+        onClick = {}
     )
 }

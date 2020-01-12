@@ -39,13 +39,10 @@ interface Pokedex {
     companion object {
         @Composable
         fun Content() {
-            TableRenderer(
-                cols = 2,
-                items = pokemons
-            ) {
+            TableRenderer(cols = 2, items = pokemons) { _, pokemon ->
                 Padding(4.dp) {
                     Clickable(onClick = { }) {
-                        PokeDexCard(it)
+                        PokeDexCard(pokemon)
                     }
                 }
             }
