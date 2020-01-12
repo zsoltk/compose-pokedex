@@ -36,16 +36,16 @@ fun Menu(onMenuItemSelected: (MenuItem) -> Unit) {
         Locations, TypeCharts
     )
 
-    TableRenderer(cols = 2, items = menuItems) { colIndex , menuItem ->
+    TableRenderer(cols = 2, items = menuItems) { cell ->
         Padding(
-            right = if (colIndex == 0) 5.dp else 0.dp,
-            left = if (colIndex == 1) 5.dp else 0.dp,
+            right = if (cell.colIndex == 0) 5.dp else 0.dp,
+            left = if (cell.colIndex == 1) 5.dp else 0.dp,
             bottom = 10.dp
         ) {
             MenuItemButton(
-                text = menuItem.label,
-                color = +colorResource(menuItem.colorResId),
-                onClick = { onMenuItemSelected(menuItem) }
+                text = cell.item.label,
+                color = +colorResource(cell.item.colorResId),
+                onClick = { onMenuItemSelected(cell.item) }
             )
         }
     }

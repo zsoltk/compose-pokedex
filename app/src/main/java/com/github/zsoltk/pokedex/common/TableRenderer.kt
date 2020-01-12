@@ -5,7 +5,7 @@ import androidx.ui.layout.Table
 import androidx.ui.layout.TableColumnWidth
 
 @Composable
-fun <T> TableRenderer(cols: Int, items: List<T>, childRenderer: @Composable() (Int, T) -> Unit) {
+fun <T> TableRenderer(cols: Int, items: List<T>, cellRenderer: @Composable() (Cell<T>) -> Unit) {
     val rows = items.size / cols
     val lastIndex = items.lastIndex
 
@@ -19,10 +19,38 @@ fun <T> TableRenderer(cols: Int, items: List<T>, childRenderer: @Composable() (I
                 val endIndex = if (maxIndex > lastIndex) lastIndex else maxIndex
 
                 for (j in startIndex..endIndex) {
-                    val colIndex = j - startIndex
-                    childRenderer(colIndex, items[j])
+                    cellRenderer(
+                        Cell(
+                            item = items[j],
+                            index = j,
+                            rowIndex = i,
+                            colIndex = j - startIndex
+                        )
+                    )
                 }
             }
         }
     }
 }
+
+data class Cell<T>(
+    /**
+     * The associated item to be rendered.
+     */
+    val item: T,
+
+    /**
+     * The index of the item in the original list passed to [TableRenderer]
+     */
+    val index: Int,
+    /**
+     * The row index in which this table cell is rendered.
+     */
+    val rowIndex: Int,
+
+    /**
+     * The column index in which this table cell is rendered.
+     */
+    val colIndex: Int
+
+)
