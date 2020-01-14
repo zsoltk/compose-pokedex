@@ -64,7 +64,7 @@ private fun StackChildren.RotatingPokeBall() {
     positioned(topInset = 140.dp) {
         Container(width = 200.dp, height = 200.dp) {
             Rotate(duration = 4000) {
-                PokeBall(tint = +colorResource(R.color.lightGrey), opacity = 0.25f)
+                PokeBall(tint = +colorResource(R.color.grey_100), opacity = 0.25f)
             }
         }
     }

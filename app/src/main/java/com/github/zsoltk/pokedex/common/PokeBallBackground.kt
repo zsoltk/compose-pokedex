@@ -23,7 +23,7 @@ fun StackChildren.PokeBallBackground() {
         ) {
             PokeBall(
                 +colorResource(
-                    R.color.lighterGrey
+                    R.color.grey_100
                 )
             )
         }

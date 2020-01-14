@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="poke_black">#303943</color>
+    <color name="poke_blue">#429BED</color>
+    <color name="poke_brown">#B1736C</color>
+    <color name="poke_light_blue">#58ABF6</color>
+    <color name="poke_light_brown">#CA8179</color>
+    <color name="poke_light_purple">#9F5BBA</color>
+    <color name="poke_light_red">#F7786B</color>
+    <color name="poke_light_teal">#2CDAB1</color>
+    <color name="poke_light_yellow">#FFCE4B</color>
+    <color name="poke_purple">#7C538C</color>
+    <color name="poke_red">#FA6555</color>
+    <color name="poke_teal">#4FC1A6</color>
+    <color name="poke_yellow">#F6C747</color>
+</resources>

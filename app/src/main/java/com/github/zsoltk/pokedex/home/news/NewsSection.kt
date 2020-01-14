@@ -57,7 +57,7 @@ fun NewsViewAll() {
     Text(
         text = "View All",
         style = (+MaterialTheme.typography()).body2.copy(
-            color = +colorResource(R.color.blue)
+            color = +colorResource(R.color.poke_blue)
         )
     )
 }
