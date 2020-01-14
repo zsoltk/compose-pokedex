@@ -29,7 +29,7 @@ import androidx.ui.text.font.FontFamily
 import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
 import com.github.zsoltk.pokedex.R
-import com.github.zsoltk.pokedex.common.PokeBall
+import com.github.zsoltk.pokedex.common.PokeBallLarge
 import com.github.zsoltk.pokedex.common.PokemonTypeLabels
 import com.github.zsoltk.pokedex.common.Rotate
 import com.github.zsoltk.pokedex.common.Title
@@ -64,7 +64,10 @@ private fun StackChildren.RotatingPokeBall() {
     positioned(topInset = 140.dp) {
         Container(width = 200.dp, height = 200.dp) {
             Rotate(duration = 4000) {
-                PokeBall(tint = +colorResource(R.color.grey_100), opacity = 0.25f)
+                PokeBallLarge(
+                    tint = +colorResource(R.color.grey_100),
+                    opacity = 0.25f
+                )
             }
         }
     }

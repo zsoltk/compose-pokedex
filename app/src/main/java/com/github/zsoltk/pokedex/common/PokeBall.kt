@@ -12,10 +12,20 @@ import androidx.ui.tooling.preview.Preview
 import com.github.zsoltk.pokedex.R
 
 @Composable
-fun PokeBall(tint: Color, opacity: Float = 1f) {
+fun PokeBallLarge(tint: Color, opacity: Float = 1f) {
+    PokeBall(tint, opacity, R.drawable.pokeball)
+}
+
+@Composable
+fun PokeBallSmall(tint: Color, opacity: Float = 1f) {
+    PokeBall(tint, opacity, R.drawable.pokeball_s)
+}
+
+@Composable
+private fun PokeBall(tint: Color, opacity: Float, imageResId: Int) {
     Opacity(opacity = opacity) {
         DrawImage(
-            image = +imageResource(R.drawable.pokeball),
+            image = +imageResource(imageResId),
             tint = tint
         )
     }
@@ -25,6 +35,6 @@ fun PokeBall(tint: Color, opacity: Float = 1f) {
 @Composable
 fun PreviewPokeBall() {
     Container(width = 100.dp, height = 100.dp) {
-        PokeBall(tint = Color.Black)
+        PokeBall(tint = Color.Black, opacity = 1f, imageResId = R.drawable.pokeball)
     }
 }

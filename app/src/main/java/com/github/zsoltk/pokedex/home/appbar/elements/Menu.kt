@@ -18,7 +18,7 @@ import androidx.ui.material.ripple.Ripple
 import androidx.ui.material.surface.Surface
 import androidx.ui.res.colorResource
 import androidx.ui.tooling.preview.Preview
-import com.github.zsoltk.pokedex.common.PokeBall
+import com.github.zsoltk.pokedex.common.PokeBallSmall
 import com.github.zsoltk.pokedex.common.TableRenderer
 import com.github.zsoltk.pokedex.home.Home.MenuItem
 import com.github.zsoltk.pokedex.home.Home.MenuItem.Abilities
@@ -69,7 +69,7 @@ fun MenuItemButton(text: String, color: Color, onClick: () -> Unit = {}) {
 
                     positioned(topInset = (-40).dp, leftInset = (-30).dp) {
                         Container(width = 60.dp, height = 60.dp) {
-                            PokeBall(
+                            PokeBallSmall(
                                 Color.White,
                                 0.15f
                             )
@@ -78,7 +78,7 @@ fun MenuItemButton(text: String, color: Color, onClick: () -> Unit = {}) {
 
                     positioned(rightInset = (-20).dp) {
                         Container(width = 96.dp, height = 96.dp) {
-                            PokeBall(
+                            PokeBallSmall(
                                 Color.White,
                                 0.15f
                             )

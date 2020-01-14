@@ -21,7 +21,7 @@ fun StackChildren.PokeBallBackground() {
             expanded = true,
             alignment = Alignment.TopRight
         ) {
-            PokeBall(
+            PokeBallLarge(
                 +colorResource(
                     R.color.grey_100
                 )

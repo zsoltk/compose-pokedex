@@ -30,8 +30,8 @@ import androidx.ui.text.font.FontFamily
 import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
 import com.github.zsoltk.pokedex.R
-import com.github.zsoltk.pokedex.common.PokeBall
 import com.github.zsoltk.pokedex.common.PokeBallBackground
+import com.github.zsoltk.pokedex.common.PokeBallSmall
 import com.github.zsoltk.pokedex.common.PokemonTypeLabels
 import com.github.zsoltk.pokedex.common.TableRenderer
 import com.github.zsoltk.pokedex.common.Title
@@ -114,7 +114,7 @@ private fun PokeDexCardContent(pokemon: Pokemon) {
 
         positioned(bottomInset = (-10).dp, rightInset = (-5).dp) {
             Container(width = 96.dp, height = 96.dp) {
-                PokeBall(
+                PokeBallSmall(
                     Color.White,
                     0.25f
                 )
