@@ -4,7 +4,6 @@ import androidx.compose.Composable
 import androidx.compose.unaryPlus
 import androidx.ui.core.Text
 import androidx.ui.core.dp
-import androidx.ui.foundation.DrawImage
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.layout.Column
 import androidx.ui.layout.Container
@@ -15,10 +14,10 @@ import androidx.ui.layout.Spacing
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.surface.Surface
 import androidx.ui.res.colorResource
-import androidx.ui.res.imageResource
 import androidx.ui.text.font.FontWeight
 import com.github.zsoltk.pokedex.R
 import com.github.zsoltk.pokedex.common.HorizontalRuler
+import com.github.zsoltk.pokedex.common.LoadImage
 import com.github.zsoltk.pokedex.entity.NewsItem
 
 @Composable
@@ -55,7 +54,7 @@ private fun NewsImage() {
     Padding(left = 48.dp) {
         Surface(shape = RoundedCornerShape(8.dp)) {
             Container(width = 112.dp, height = 64.dp) {
-                DrawImage(image = +imageResource(R.drawable.news1))
+                LoadImage(R.drawable.news1)
             }
         }
     }

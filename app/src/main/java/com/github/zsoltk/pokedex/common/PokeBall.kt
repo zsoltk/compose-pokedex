@@ -1,13 +1,10 @@
 package com.github.zsoltk.pokedex.common
 
 import androidx.compose.Composable
-import androidx.compose.unaryPlus
 import androidx.ui.core.Opacity
 import androidx.ui.core.dp
-import androidx.ui.foundation.DrawImage
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Container
-import androidx.ui.res.imageResource
 import androidx.ui.tooling.preview.Preview
 import com.github.zsoltk.pokedex.R
 
@@ -24,10 +21,7 @@ fun PokeBallSmall(tint: Color, opacity: Float = 1f) {
 @Composable
 private fun PokeBall(tint: Color, opacity: Float, imageResId: Int) {
     Opacity(opacity = opacity) {
-        DrawImage(
-            image = +imageResource(imageResId),
-            tint = tint
-        )
+        LoadImage(imageResId, tint)
     }
 }
 

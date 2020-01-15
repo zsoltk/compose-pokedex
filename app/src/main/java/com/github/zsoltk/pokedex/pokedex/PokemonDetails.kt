@@ -23,12 +23,12 @@ import androidx.ui.material.Tab
 import androidx.ui.material.TabRow
 import androidx.ui.material.surface.Surface
 import androidx.ui.res.colorResource
-import androidx.ui.res.imageResource
 import androidx.ui.text.TextStyle
 import androidx.ui.text.font.FontFamily
 import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
 import com.github.zsoltk.pokedex.R
+import com.github.zsoltk.pokedex.common.LoadImage
 import com.github.zsoltk.pokedex.common.PokeBallLarge
 import com.github.zsoltk.pokedex.common.PokemonTypeLabels
 import com.github.zsoltk.pokedex.common.Rotate
@@ -160,7 +160,7 @@ private fun StackChildren.Image(pokemon: Pokemon) {
     pokemon.image?.let { image ->
         positioned(topInset = 140.dp) {
             Container(width = 200.dp, height = 200.dp) {
-                DrawImage(+imageResource(image))
+                LoadImage(image)
             }
         }
     }
