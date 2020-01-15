@@ -25,15 +25,23 @@ private fun createDefinition(duration: Int) = transitionDefinition {
 }
 
 @Composable
-fun Rotate(duration: Int, children: @Composable() () -> Unit) {
-    Transition(definition = createDefinition(duration), initState = 0, toState = 1) {
-        Draw(children = children) { canvas, parent ->
-            canvas.save()
-            canvas.translate(parent.width.value / 2, parent.height.value / 2)
-            canvas.rotate(it[rotation])
-            canvas.translate(-parent.width.value / 2, -parent.height.value / 2)
-            drawChildren()
-            canvas.restore()
-        }
+fun RotateIndefinitely(durationPerRotation: Int, children: @Composable() () -> Unit) {
+    Transition(definition = createDefinition(durationPerRotation), initState = 0, toState = 1) {
+        Rotate(it[rotation], children)
+    }
+}
+
+@Composable
+fun Rotate(degree: Float, children: @Composable() () -> Unit) {
+    Draw(children = children) { canvas, parent ->
+        val halfWidth = parent.width.value / 2
+        val halfHeight = parent.height.value / 2
+
+        canvas.save()
+        canvas.translate(halfWidth, halfHeight)
+        canvas.rotate(degree)
+        canvas.translate(-halfWidth, -halfHeight)
+        drawChildren()
+        canvas.restore()
     }
 }

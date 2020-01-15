@@ -3,16 +3,17 @@ package com.github.zsoltk.pokedex.pokedex
 import androidx.compose.Composable
 import androidx.compose.state
 import androidx.compose.unaryPlus
+import androidx.ui.core.Opacity
 import androidx.ui.core.Text
 import androidx.ui.core.dp
 import androidx.ui.core.sp
-import androidx.ui.foundation.DrawImage
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Column
 import androidx.ui.layout.Container
 import androidx.ui.layout.ExpandedHeight
 import androidx.ui.layout.ExpandedWidth
+import androidx.ui.layout.FixedSpacer
 import androidx.ui.layout.Gravity
 import androidx.ui.layout.HeightSpacer
 import androidx.ui.layout.Padding
@@ -31,6 +32,7 @@ import com.github.zsoltk.pokedex.R
 import com.github.zsoltk.pokedex.common.LoadImage
 import com.github.zsoltk.pokedex.common.PokeBallLarge
 import com.github.zsoltk.pokedex.common.PokemonTypeLabels
+import com.github.zsoltk.pokedex.common.RotateIndefinitely
 import com.github.zsoltk.pokedex.common.Rotate
 import com.github.zsoltk.pokedex.common.Title
 import com.github.zsoltk.pokedex.common.TypeLabelMetrics.Companion.MEDIUM
@@ -49,6 +51,8 @@ interface PokemonDetails {
         fun Content(pokemon: Pokemon) {
             Surface(color = +colorResource(pokemon.color())) {
                 Stack {
+                    RoundedRectangleDecoration()
+                    DottedDecoration()
                     RotatingPokeBall()
                     HeaderLeft(pokemon)
                     HeaderRight(pokemon)
@@ -60,10 +64,32 @@ interface PokemonDetails {
     }
 }
 
+private fun StackChildren.RoundedRectangleDecoration() {
+    positioned(topInset = (-50).dp, leftInset = (-60).dp) {
+        Container {
+            Rotate(-20f) {
+                Surface(color = Color(0x22FFFFFF), shape = RoundedCornerShape(32.dp)) {
+                    FixedSpacer(width = 150.dp, height = 150.dp)
+                }
+            }
+        }
+    }
+}
+
+private fun StackChildren.DottedDecoration() {
+    positioned(topInset = 4.dp, rightInset = 100.dp) {
+        Container(width = 63.dp, height = 34.dp) {
+            Opacity(opacity = 0.3f) {
+                LoadImage(imageResId = R.drawable.dotted)
+            }
+        }
+    }
+}
+
 private fun StackChildren.RotatingPokeBall() {
     positioned(topInset = 140.dp) {
         Container(width = 200.dp, height = 200.dp) {
-            Rotate(duration = 4000) {
+            RotateIndefinitely(durationPerRotation = 4000) {
                 PokeBallLarge(
                     tint = +colorResource(R.color.grey_100),
                     opacity = 0.25f
