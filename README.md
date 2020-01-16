@@ -3,6 +3,10 @@
 
 Android Pokedex on Jetpack Compose
 
+## Install
+
+You can build the project with Android Studio 4.0 or [download the apk directly](https://github.com/zsoltk/compose-pokedex/releases) from releases.
+
 ## Screenshots
 
 ![](https://imgur.com/QK1oSpH.png)
