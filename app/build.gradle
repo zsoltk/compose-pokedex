@@ -39,14 +39,17 @@ dependencies {
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation "androidx.lifecycle:lifecycle-livedata:2.1.0"
     implementation 'androidx.ui:ui-framework:0.1.0-dev03'
     implementation 'androidx.ui:ui-layout:0.1.0-dev03'
     implementation 'androidx.ui:ui-foundation:0.1.0-dev03'
     implementation 'androidx.ui:ui-material:0.1.0-dev03'
     implementation 'androidx.ui:ui-tooling:0.1.0-dev03'
     implementation 'com.github.zsoltk:compose-router:0.3.1'
+    implementation "io.reactivex.rxjava2:rxjava:2.2.17"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

@@ -1,7 +1,7 @@
 # compose-pokedex
 ![License-MIT](https://img.shields.io/badge/License-MIT-red.svg)
 
-Android Pokedex on Jetpack Compose
+Android Pokedex on Jetpack Compose. Single-Activity, no Fragments.
 
 ## Install
 
@@ -27,6 +27,7 @@ You can build the project with Android Studio 4.0 or [download the apk directly]
 
 - [compose](https://developer.android.com/jetpack/compose)
 - [compose-router](https://github.com/zsoltk/compose-router)
+- [livedata](https://developer.android.com/topic/libraries/architecture/livedata)
 
 ## License
 

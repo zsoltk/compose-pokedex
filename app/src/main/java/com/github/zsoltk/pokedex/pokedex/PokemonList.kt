@@ -1,8 +1,9 @@
 package com.github.zsoltk.pokedex.pokedex
 
 import androidx.compose.Composable
+import androidx.compose.memo
 import androidx.compose.unaryPlus
-import androidx.ui.core.Alignment
+import androidx.ui.animation.Crossfade
 import androidx.ui.core.Opacity
 import androidx.ui.core.Text
 import androidx.ui.core.dp
@@ -14,29 +15,41 @@ import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Column
 import androidx.ui.layout.Container
+import androidx.ui.layout.ExpandedHeight
 import androidx.ui.layout.ExpandedWidth
+import androidx.ui.layout.Gravity
 import androidx.ui.layout.Height
 import androidx.ui.layout.Padding
 import androidx.ui.layout.Spacing
 import androidx.ui.layout.Stack
-import androidx.ui.layout.StackChildren
+import androidx.ui.material.Button
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.ripple.Ripple
 import androidx.ui.material.surface.Surface
 import androidx.ui.res.colorResource
 import androidx.ui.res.imageResource
+import androidx.ui.text.ParagraphStyle
 import androidx.ui.text.TextStyle
 import androidx.ui.text.font.FontFamily
 import androidx.ui.text.font.FontWeight
+import androidx.ui.text.style.TextAlign
 import androidx.ui.tooling.preview.Preview
 import com.github.zsoltk.pokedex.R
+import com.github.zsoltk.pokedex.common.AsyncState.Error
+import com.github.zsoltk.pokedex.common.AsyncState.Initialised
+import com.github.zsoltk.pokedex.common.AsyncState.Loading
+import com.github.zsoltk.pokedex.common.AsyncState.Result
 import com.github.zsoltk.pokedex.common.PokeBallBackground
 import com.github.zsoltk.pokedex.common.PokeBallSmall
 import com.github.zsoltk.pokedex.common.PokemonTypeLabels
+import com.github.zsoltk.pokedex.common.RotateIndefinitely
 import com.github.zsoltk.pokedex.common.TableRenderer
 import com.github.zsoltk.pokedex.common.Title
 import com.github.zsoltk.pokedex.common.TypeLabelMetrics.Companion.SMALL
+import com.github.zsoltk.pokedex.common.observe
 import com.github.zsoltk.pokedex.entity.Pokemon
+import com.github.zsoltk.pokedex.entity.PokemonApi
+import com.github.zsoltk.pokedex.entity.PokemonLiveData
 import com.github.zsoltk.pokedex.entity.color
 import com.github.zsoltk.pokedex.entity.pokemons
 import com.github.zsoltk.pokedex.lightThemeColors
@@ -46,10 +59,23 @@ interface PokemonList {
     companion object {
         @Composable
         fun Content(onPokemonSelected: (Pokemon) -> Unit) {
-            Surface {
-                Stack {
-                    PokeBallBackground()
-                    PokedexContent(onPokemonSelected)
+            // You could lift this out to higher scope to survive this screen and avoid
+            // loading every time. Kept here for demonstration purposes only.
+            val liveData = +memo { PokemonLiveData() }
+            val asyncState = +observe(liveData)
+
+            Stack(modifier = ExpandedHeight wraps ExpandedWidth) {
+                PokeBallBackground()
+
+                expanded {
+                    Crossfade(current = asyncState) {
+                        when (it) {
+                            is Initialised,
+                            is Loading -> LoadingView()
+                            is Error -> ErrorView(onRetryClicked = { liveData.reload() })
+                            is Result -> ContentView(onPokemonSelected)
+                        }
+                    }
                 }
             }
         }
@@ -57,8 +83,42 @@ interface PokemonList {
 }
 
 @Composable
-private fun StackChildren.PokedexContent(onPokemonSelected: (Pokemon) -> Unit) {
-    aligned(Alignment.TopLeft) {
+private fun LoadingView() {
+    Container(expanded = true) {
+        RotateIndefinitely(durationPerRotation = 400) {
+            Container(width = 50.dp, height = 50.dp) {
+                PokeBallSmall(tint = +colorResource(R.color.poke_light_red))
+            }
+        }
+    }
+}
+
+@Composable
+private fun ErrorView(onRetryClicked: () -> Unit) {
+    val errorRatio = "%.0f".format(PokemonApi.randomFailureChance * 100)
+
+    Container(expanded = true) {
+        Column {
+            Text(
+                text = "There's a $errorRatio% chance of a simulated error.\nNow it happened.",
+                style = (+MaterialTheme.typography()).body1.copy(
+                    color = +colorResource(R.color.poke_red)
+                ),
+                paragraphStyle = ParagraphStyle(textAlign = TextAlign.Center),
+                modifier = Spacing(bottom = 16.dp)
+            )
+            Button(
+                modifier = Gravity.Center,
+                text = "Retry",
+                onClick = onRetryClicked
+            )
+        }
+    }
+}
+
+@Composable
+private fun ContentView(onPokemonSelected: (Pokemon) -> Unit) {
+    Container(expanded = true) {
         VerticalScroller {
             Padding(padding = 32.dp) {
                 Column {
