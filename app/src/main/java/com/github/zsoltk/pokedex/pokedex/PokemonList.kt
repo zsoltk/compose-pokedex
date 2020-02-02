@@ -21,7 +21,6 @@ import androidx.ui.layout.LayoutWidth
 import androidx.ui.layout.Padding
 import androidx.ui.layout.Stack
 import androidx.ui.material.Button
-import androidx.ui.layout.StackScope
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.ripple.Ripple
 import androidx.ui.material.surface.Surface
@@ -67,7 +66,9 @@ interface PokemonList {
             val asyncState = observe(liveData)
 
             Stack(modifier = LayoutHeight.Fill + LayoutWidth.Fill) {
-                PokeBallBackground()
+                Surface(color = MaterialTheme.colors().surface) {
+                    PokeBallBackground()
+                }
 
                 Container(modifier = LayoutGravity.Stretch) {
                     Crossfade(current = asyncState) {
