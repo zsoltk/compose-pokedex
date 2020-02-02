@@ -1,11 +1,11 @@
 package com.github.zsoltk.pokedex.common
 
 import androidx.compose.Composable
-import androidx.ui.core.Dp
-import androidx.ui.core.dp
 import androidx.ui.layout.Padding
 import androidx.ui.layout.Table
 import androidx.ui.layout.TableColumnWidth
+import androidx.ui.unit.Dp
+import androidx.ui.unit.dp
 
 /**
  * Renders a list of items into a table.

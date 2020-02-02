@@ -1,19 +1,18 @@
 package com.github.zsoltk.pokedex.pokedex.section
 
 import androidx.compose.Composable
-import androidx.compose.unaryPlus
 import androidx.ui.core.Text
-import androidx.ui.core.dp
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Container
+import androidx.ui.layout.LayoutPadding
 import androidx.ui.layout.Padding
-import androidx.ui.layout.Spacing
 import androidx.ui.layout.Table
 import androidx.ui.layout.TableColumnWidth
 import androidx.ui.material.LinearProgressIndicator
 import androidx.ui.material.MaterialTheme
 import androidx.ui.res.colorResource
 import androidx.ui.text.font.FontWeight
+import androidx.ui.unit.dp
 import com.github.zsoltk.pokedex.R
 import com.github.zsoltk.pokedex.entity.Pokemon
 
@@ -59,8 +58,8 @@ private fun StatsTable(stats: List<Stat>) {
                 Padding(right = 16.dp, bottom = 8.dp) {
                     Text(
                         text = it.label,
-                        style = (+MaterialTheme.typography()).body2.copy(
-                            color = +colorResource(R.color.grey_900)
+                        style = MaterialTheme.typography().body2.copy(
+                            color = colorResource(R.color.grey_900)
                         )
                     )
                 }
@@ -68,13 +67,13 @@ private fun StatsTable(stats: List<Stat>) {
                 Padding(right = 16.dp, bottom = 8.dp) {
                     Text(
                         text = it.value.toString(),
-                        style = (+MaterialTheme.typography()).body2.copy(
+                        style = MaterialTheme.typography().body2.copy(
                             fontWeight = FontWeight.Bold
                         )
                     )
                 }
 
-                Container(modifier = Spacing(top = 8.dp)) {
+                Container(modifier = LayoutPadding(top = 8.dp)) {
                     LinearProgressIndicator(
                         progress = it.progress,
                         color = Color.Red

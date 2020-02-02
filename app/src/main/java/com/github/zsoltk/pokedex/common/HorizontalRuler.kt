@@ -1,15 +1,15 @@
 package com.github.zsoltk.pokedex.common
 
 import androidx.compose.Composable
-import androidx.ui.core.Dp
-import androidx.ui.core.dp
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Arrangement
 import androidx.ui.layout.Container
-import androidx.ui.layout.ExpandedWidth
+import androidx.ui.layout.LayoutWidth
 import androidx.ui.layout.Row
-import androidx.ui.layout.WidthSpacer
+import androidx.ui.layout.Spacer
 import androidx.ui.material.surface.Surface
+import androidx.ui.unit.Dp
+import androidx.ui.unit.dp
 
 @Composable
 fun HorizontalRuler(
@@ -19,7 +19,7 @@ fun HorizontalRuler(
     centered: Boolean = true
 ) {
     Row(
-        modifier = ExpandedWidth,
+        modifier = LayoutWidth.Fill,
         arrangement = if (centered) Arrangement.Center else Arrangement.Begin
     ) {
         Surface(color = color) {
@@ -28,7 +28,7 @@ fun HorizontalRuler(
                 width = width,
                 height = height
             ) {
-                WidthSpacer(width = 1.dp)
+                Spacer(modifier = LayoutWidth(1.dp))
             }
         }
     }

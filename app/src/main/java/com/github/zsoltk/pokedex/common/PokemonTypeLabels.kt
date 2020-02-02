@@ -1,20 +1,21 @@
 package com.github.zsoltk.pokedex.common
 
 import androidx.compose.Composable
-import androidx.compose.unaryPlus
-import androidx.ui.core.Dp
 import androidx.ui.core.Text
-import androidx.ui.core.TextUnit
-import androidx.ui.core.dp
-import androidx.ui.core.sp
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
-import androidx.ui.layout.FixedSpacer
+import androidx.ui.layout.LayoutHeight
+import androidx.ui.layout.LayoutWidth
 import androidx.ui.layout.Padding
+import androidx.ui.layout.Spacer
 import androidx.ui.material.surface.Surface
 import androidx.ui.res.colorResource
 import androidx.ui.text.TextStyle
 import androidx.ui.text.font.FontFamily
+import androidx.ui.unit.Dp
+import androidx.ui.unit.TextUnit
+import androidx.ui.unit.dp
+import androidx.ui.unit.sp
 import com.github.zsoltk.pokedex.R
 
 data class TypeLabelMetrics(
@@ -39,7 +40,7 @@ fun PokemonTypeLabels(types: List<String>?, metrics: TypeLabelMetrics) {
         ) {
             PokemonTypeLabel(it, metrics)
         }
-        FixedSpacer(width = metrics.elementSpacing, height = metrics.elementSpacing)
+        Spacer(modifier = LayoutWidth(metrics.elementSpacing) + LayoutHeight(metrics.elementSpacing))
     }
 }
 
@@ -56,7 +57,7 @@ fun PokemonTypeLabel(text: String, metrics: TypeLabelMetrics) {
             style = TextStyle(
                 fontFamily = FontFamily("Roboto"),
                 fontSize = metrics.fontSize,
-                color = +colorResource(R.color.white_1000)
+                color = colorResource(R.color.white_1000)
             )
         )
     }

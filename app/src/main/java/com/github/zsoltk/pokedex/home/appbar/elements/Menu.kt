@@ -1,16 +1,15 @@
 package com.github.zsoltk.pokedex.home.appbar.elements
 
 import androidx.compose.Composable
-import androidx.compose.unaryPlus
 import androidx.ui.core.Alignment
 import androidx.ui.core.Text
-import androidx.ui.core.dp
 import androidx.ui.foundation.Clickable
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Container
-import androidx.ui.layout.ExpandedWidth
-import androidx.ui.layout.Height
+import androidx.ui.layout.EdgeInsets
+import androidx.ui.layout.LayoutHeight
+import androidx.ui.layout.LayoutWidth
 import androidx.ui.layout.Padding
 import androidx.ui.layout.Stack
 import androidx.ui.material.MaterialTheme
@@ -18,6 +17,7 @@ import androidx.ui.material.ripple.Ripple
 import androidx.ui.material.surface.Surface
 import androidx.ui.res.colorResource
 import androidx.ui.tooling.preview.Preview
+import androidx.ui.unit.dp
 import com.github.zsoltk.pokedex.common.PokeBallSmall
 import com.github.zsoltk.pokedex.common.TableRenderer
 import com.github.zsoltk.pokedex.home.Home.MenuItem
@@ -39,7 +39,7 @@ fun Menu(onMenuItemSelected: (MenuItem) -> Unit) {
     TableRenderer(cols = 2, cellSpacing = 5.dp, items = menuItems) { cell ->
         MenuItemButton(
             text = cell.item.label,
-            color = +colorResource(cell.item.colorResId),
+            color = colorResource(cell.item.colorResId),
             onClick = { onMenuItemSelected(cell.item) }
         )
     }
@@ -54,20 +54,24 @@ fun MenuItemButton(text: String, color: Color, onClick: () -> Unit = {}) {
         Ripple(bounded = true) {
             Clickable(onClick) {
                 Stack(
-                    modifier = Height(64.dp) wraps ExpandedWidth
+                    modifier = LayoutHeight(64.dp) + LayoutWidth.Fill
                 ) {
-                    aligned(Alignment.CenterLeft) {
+                    Container(alignment = Alignment.CenterLeft) {
                         Padding(left = 16.dp) {
                             Text(
                                 text = text,
-                                style = (+MaterialTheme.typography()).body1.copy(
+                                style = MaterialTheme.typography().body1.copy(
                                     color = Color.White
                                 )
                             )
                         }
                     }
 
-                    positioned(topInset = (-40).dp, leftInset = (-30).dp) {
+                    Container(
+                        alignment = Alignment.TopLeft,
+                        padding = EdgeInsets(top = (-40).dp, left = (-30).dp),
+                        expanded = true
+                    ) {
                         Container(width = 60.dp, height = 60.dp) {
                             PokeBallSmall(
                                 Color.White,
@@ -76,7 +80,11 @@ fun MenuItemButton(text: String, color: Color, onClick: () -> Unit = {}) {
                         }
                     }
 
-                    positioned(rightInset = (-20).dp) {
+                    Container(
+                        alignment = Alignment.TopRight,
+                        padding = EdgeInsets(right = (-20).dp),
+                        expanded = true
+                    ) {
                         Container(width = 96.dp, height = 96.dp) {
                             PokeBallSmall(
                                 Color.White,

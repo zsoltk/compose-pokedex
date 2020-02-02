@@ -5,6 +5,7 @@ import androidx.animation.Infinite
 import androidx.animation.LinearEasing
 import androidx.animation.transitionDefinition
 import androidx.compose.Composable
+import androidx.ui.animation.Transition
 import androidx.ui.core.Draw
 
 private val rotation = FloatPropKey()

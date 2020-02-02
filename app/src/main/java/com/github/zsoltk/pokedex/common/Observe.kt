@@ -1,9 +1,11 @@
 package com.github.zsoltk.pokedex.common
 
 import androidx.annotation.CheckResult
+import androidx.compose.Composable
 import androidx.compose.effectOf
 import androidx.compose.memo
 import androidx.compose.onCommit
+import androidx.compose.remember
 import androidx.compose.state
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -18,16 +20,17 @@ sealed class AsyncState<T> {
 
 /**
  * Based on https://medium.com/swlh/android-mvi-with-jetpack-compose-b0890f5156ac
+ * Adapted for 0.1.0-dev04
  */
-@CheckResult(suggest = "+")
-fun <T> observe(data: LiveData<T>) = effectOf<T?> {
-    var result by +state { data.value }
-    val observer = +memo { Observer<T> { result = it } }
+@Composable
+fun <T> observe(data: LiveData<T>): T? {
+    var result by state { data.value }
+    val observer = remember { Observer<T> { result = it } }
 
-    +onCommit(data) {
+    onCommit(data) {
         data.observeForever(observer)
         onDispose { data.removeObserver(observer) }
     }
 
-    result
+    return result
 }

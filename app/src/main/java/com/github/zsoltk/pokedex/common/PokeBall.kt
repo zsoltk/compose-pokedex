@@ -2,10 +2,10 @@ package com.github.zsoltk.pokedex.common
 
 import androidx.compose.Composable
 import androidx.ui.core.Opacity
-import androidx.ui.core.dp
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Container
 import androidx.ui.tooling.preview.Preview
+import androidx.ui.unit.dp
 import com.github.zsoltk.pokedex.R
 
 @Composable

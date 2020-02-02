@@ -2,24 +2,22 @@ package com.github.zsoltk.pokedex.pokedex
 
 import androidx.compose.Composable
 import androidx.compose.state
-import androidx.compose.unaryPlus
 import androidx.ui.core.Opacity
 import androidx.ui.core.Text
-import androidx.ui.core.dp
-import androidx.ui.core.sp
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Column
 import androidx.ui.layout.Container
-import androidx.ui.layout.ExpandedHeight
-import androidx.ui.layout.ExpandedWidth
-import androidx.ui.layout.FixedSpacer
-import androidx.ui.layout.Gravity
-import androidx.ui.layout.HeightSpacer
+import androidx.ui.layout.LayoutGravity
+import androidx.ui.layout.LayoutHeight
+import androidx.ui.layout.LayoutPadding
+import androidx.ui.layout.LayoutSize
+import androidx.ui.layout.LayoutWidth
 import androidx.ui.layout.Padding
 import androidx.ui.layout.Row
+import androidx.ui.layout.Spacer
 import androidx.ui.layout.Stack
-import androidx.ui.layout.StackChildren
+import androidx.ui.layout.StackScope
 import androidx.ui.material.Tab
 import androidx.ui.material.TabRow
 import androidx.ui.material.surface.Surface
@@ -28,12 +26,14 @@ import androidx.ui.text.TextStyle
 import androidx.ui.text.font.FontFamily
 import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
+import androidx.ui.unit.dp
+import androidx.ui.unit.sp
 import com.github.zsoltk.pokedex.R
 import com.github.zsoltk.pokedex.common.LoadImage
 import com.github.zsoltk.pokedex.common.PokeBallLarge
 import com.github.zsoltk.pokedex.common.PokemonTypeLabels
-import com.github.zsoltk.pokedex.common.RotateIndefinitely
 import com.github.zsoltk.pokedex.common.Rotate
+import com.github.zsoltk.pokedex.common.RotateIndefinitely
 import com.github.zsoltk.pokedex.common.Title
 import com.github.zsoltk.pokedex.common.TypeLabelMetrics.Companion.MEDIUM
 import com.github.zsoltk.pokedex.entity.Pokemon
@@ -49,7 +49,7 @@ interface PokemonDetails {
     companion object {
         @Composable
         fun Content(pokemon: Pokemon) {
-            Surface(color = +colorResource(pokemon.color())) {
+            Surface(color = colorResource(pokemon.color())) {
                 Stack {
                     RoundedRectangleDecoration()
                     DottedDecoration()
@@ -64,83 +64,97 @@ interface PokemonDetails {
     }
 }
 
-private fun StackChildren.RoundedRectangleDecoration() {
-    positioned(topInset = (-50).dp, leftInset = (-60).dp) {
-        Container {
-            Rotate(-20f) {
-                Surface(color = Color(0x22FFFFFF), shape = RoundedCornerShape(32.dp)) {
-                    FixedSpacer(width = 150.dp, height = 150.dp)
-                }
+private fun StackScope.RoundedRectangleDecoration() {
+    Container(
+        modifier = LayoutGravity.TopLeft + LayoutPadding(
+            top = (-50).dp,
+            left = (-60).dp
+        )
+    ) {
+        Rotate(-20f) {
+            Surface(color = Color(0x22FFFFFF), shape = RoundedCornerShape(32.dp)) {
+                Spacer(modifier = LayoutWidth(150.dp) + LayoutHeight(150.dp))
             }
         }
     }
 }
 
-private fun StackChildren.DottedDecoration() {
-    positioned(topInset = 4.dp, rightInset = 100.dp) {
-        Container(width = 63.dp, height = 34.dp) {
-            Opacity(opacity = 0.3f) {
-                LoadImage(imageResId = R.drawable.dotted)
-            }
+private fun StackScope.DottedDecoration() {
+    Container(
+        modifier = LayoutGravity.TopRight + LayoutPadding(
+            top = 4.dp,
+            right = 100.dp
+        ),
+        width = 63.dp,
+        height = 34.dp
+    ) {
+        Opacity(opacity = 0.3f) {
+            LoadImage(imageResId = R.drawable.dotted)
         }
     }
 }
 
-private fun StackChildren.RotatingPokeBall() {
-    positioned(topInset = 140.dp) {
-        Container(width = 200.dp, height = 200.dp) {
-            RotateIndefinitely(durationPerRotation = 4000) {
-                PokeBallLarge(
-                    tint = +colorResource(R.color.grey_100),
-                    opacity = 0.25f
-                )
-            }
+private fun StackScope.RotatingPokeBall() {
+    Container(
+        modifier = LayoutGravity.TopCenter +
+            LayoutPadding(top = 140.dp) +
+            LayoutSize(200.dp)
+    ) {
+        RotateIndefinitely(durationPerRotation = 4000) {
+            PokeBallLarge(
+                tint = colorResource(R.color.grey_100),
+                opacity = 0.25f
+            )
         }
     }
 }
 
-private fun StackChildren.HeaderRight(pokemon: Pokemon) {
-    positioned(topInset = 52.dp, rightInset = 0.dp) {
-        Padding(32.dp) {
-            Column {
-                Text(
-                    modifier = Gravity.End,
-                    text = pokemon.id ?: "",
-                    style = TextStyle(
-                        fontFamily = FontFamily("Roboto"),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp,
-                        color = Color.White
-                    )
-                )
-                HeightSpacer(height = 6.dp)
-                Text(
-                    modifier = Gravity.End,
-                    text = pokemon.category ?: "",
-                    style = TextStyle(
-                        fontFamily = FontFamily("Roboto"),
-                        fontSize = 12.sp,
-                        color = Color.White
-                    )
-                )
-            }
-        }
-    }
-}
-
-private fun StackChildren.HeaderLeft(pokemon: Pokemon) {
-    positioned(topInset = 40.dp, leftInset = 0.dp) {
-        Padding(32.dp) {
-            Column {
-                Title(
-                    text = pokemon.name ?: "",
+private fun StackScope.HeaderRight(pokemon: Pokemon) {
+    Container(
+        modifier = LayoutGravity.TopRight +
+            LayoutPadding(top = 52.dp) +
+            LayoutPadding(32.dp)
+    ) {
+        Column {
+            Text(
+                modifier = LayoutGravity.End,
+                text = pokemon.id ?: "",
+                style = TextStyle(
+                    fontFamily = FontFamily("Roboto"),
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp,
                     color = Color.White
                 )
+            )
+            Spacer(modifier = LayoutHeight(6.dp))
+            Text(
+                modifier = LayoutGravity.End,
+                text = pokemon.category ?: "",
+                style = TextStyle(
+                    fontFamily = FontFamily("Roboto"),
+                    fontSize = 12.sp,
+                    color = Color.White
+                )
+            )
+        }
+    }
+}
 
-                pokemon.typeOfPokemon?.let {
-                    Row {
-                        PokemonTypeLabels(it, MEDIUM)
-                    }
+private fun StackScope.HeaderLeft(pokemon: Pokemon) {
+    Container(
+        modifier = LayoutGravity.TopLeft +
+            LayoutPadding(top = 40.dp) +
+            LayoutPadding(32.dp)
+    ) {
+        Column {
+            Title(
+                text = pokemon.name ?: "",
+                color = Color.White
+            )
+
+            pokemon.typeOfPokemon?.let {
+                Row {
+                    PokemonTypeLabels(it, MEDIUM)
                 }
             }
         }
@@ -154,15 +168,18 @@ private enum class Sections(val title: String) {
     Moves("Moves")
 }
 
-private fun StackChildren.CardContent(pokemon: Pokemon) {
-    positioned(topInset = 300.dp) {
+private fun StackScope.CardContent(pokemon: Pokemon) {
+    Container(
+        modifier = LayoutGravity.TopCenter +
+            LayoutPadding(top = 300.dp)
+    ) {
         Surface(shape = RoundedCornerShape(topLeft = 32.dp, topRight = 32.dp)) {
-            Column(modifier = ExpandedWidth wraps ExpandedHeight) {
+            Column(modifier = LayoutWidth.Fill + LayoutHeight.Fill) {
 
-                HeightSpacer(height = 32.dp)
+                Spacer(modifier = LayoutHeight(32.dp))
 
                 val sectionTitles = Sections.values().map { it.title }
-                var section by +state { Sections.BaseStats }
+                var section by state { Sections.BaseStats }
                 TabRow(items = sectionTitles, selectedIndex = section.ordinal) { index, text ->
                     Tab(text = text, selected = section.ordinal == index) {
                         section = Sections.values()[index]
@@ -182,12 +199,14 @@ private fun StackChildren.CardContent(pokemon: Pokemon) {
     }
 }
 
-private fun StackChildren.Image(pokemon: Pokemon) {
+private fun StackScope.Image(pokemon: Pokemon) {
     pokemon.image?.let { image ->
-        positioned(topInset = 140.dp) {
-            Container(width = 200.dp, height = 200.dp) {
-                LoadImage(image)
-            }
+        Container(
+            modifier = LayoutGravity.TopCenter +
+                LayoutPadding(top = 140.dp) +
+                LayoutSize(200.dp)
+        ) {
+            LoadImage(image)
         }
     }
 }
