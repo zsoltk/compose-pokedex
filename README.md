@@ -1,7 +1,8 @@
 # compose-pokedex
 ![License-MIT](https://img.shields.io/badge/License-MIT-red.svg)
+![Featured in androidweekly.net Issue #399](https://androidweekly.net/issues/issue-399/badge)
 
-Android Pokedex on Jetpack Compose. 
+Pokedex on Jetpack Compose. 
 
 Single-Activity, no Fragments.
 
