@@ -23,12 +23,12 @@ import androidx.ui.material.TabRow
 import androidx.ui.material.surface.Surface
 import androidx.ui.res.colorResource
 import androidx.ui.text.TextStyle
-import androidx.ui.text.font.FontFamily
 import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import androidx.ui.unit.sp
 import com.github.zsoltk.pokedex.R
+import com.github.zsoltk.pokedex.appFontFamily
 import com.github.zsoltk.pokedex.common.LoadImage
 import com.github.zsoltk.pokedex.common.PokeBallLarge
 import com.github.zsoltk.pokedex.common.PokemonTypeLabels
@@ -120,7 +120,7 @@ private fun StackScope.HeaderRight(pokemon: Pokemon) {
                 modifier = LayoutGravity.End,
                 text = pokemon.id ?: "",
                 style = TextStyle(
-                    fontFamily = FontFamily("Roboto"),
+                    fontFamily = appFontFamily,
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
                     color = Color.White
@@ -131,7 +131,7 @@ private fun StackScope.HeaderRight(pokemon: Pokemon) {
                 modifier = LayoutGravity.End,
                 text = pokemon.category ?: "",
                 style = TextStyle(
-                    fontFamily = FontFamily("Roboto"),
+                    fontFamily = appFontFamily,
                     fontSize = 12.sp,
                     color = Color.White
                 )

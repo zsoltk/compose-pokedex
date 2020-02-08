@@ -11,12 +11,12 @@ import androidx.ui.layout.Spacer
 import androidx.ui.material.surface.Surface
 import androidx.ui.res.colorResource
 import androidx.ui.text.TextStyle
-import androidx.ui.text.font.FontFamily
 import androidx.ui.unit.Dp
 import androidx.ui.unit.TextUnit
 import androidx.ui.unit.dp
 import androidx.ui.unit.sp
 import com.github.zsoltk.pokedex.R
+import com.github.zsoltk.pokedex.appFontFamily
 
 data class TypeLabelMetrics(
     val cornerRadius: Dp,
@@ -55,7 +55,7 @@ fun PokemonTypeLabel(text: String, metrics: TypeLabelMetrics) {
         Text(
             text = text,
             style = TextStyle(
-                fontFamily = FontFamily("Roboto"),
+                fontFamily = appFontFamily,
                 fontSize = metrics.fontSize,
                 color = colorResource(R.color.white_1000)
             )
