@@ -29,13 +29,13 @@ import androidx.ui.res.imageResource
 import androidx.ui.text.AnnotatedString
 import androidx.ui.text.ParagraphStyle
 import androidx.ui.text.TextStyle
-import androidx.ui.text.font.FontFamily
 import androidx.ui.text.font.FontWeight
 import androidx.ui.text.style.TextAlign
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import androidx.ui.unit.sp
 import com.github.zsoltk.pokedex.R
+import com.github.zsoltk.pokedex.appFontFamily
 import com.github.zsoltk.pokedex.common.AsyncState.Error
 import com.github.zsoltk.pokedex.common.AsyncState.Initialised
 import com.github.zsoltk.pokedex.common.AsyncState.Loading
@@ -201,7 +201,7 @@ private fun PokemonName(text: String?) {
     Text(
         text = text ?: "",
         style = TextStyle(
-            fontFamily = FontFamily("Roboto"),
+            fontFamily = appFontFamily,
             fontWeight = FontWeight.Bold,
             fontSize = 16.sp,
             color = colorResource(R.color.white_1000)
@@ -216,7 +216,7 @@ private fun PokemonId(text: String?) {
         Text(
             text = text ?: "",
             style = TextStyle(
-                fontFamily = FontFamily("Roboto"),
+                fontFamily = appFontFamily,
                 fontWeight = FontWeight.Bold,
                 fontSize = 14.sp
             )

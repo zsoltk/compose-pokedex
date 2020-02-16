@@ -6,10 +6,10 @@ import androidx.ui.core.Text
 import androidx.ui.foundation.DrawImage
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.layout.Container
+import androidx.ui.layout.LayoutGravity
 import androidx.ui.layout.LayoutPadding
 import androidx.ui.layout.LayoutWidth
 import androidx.ui.layout.Row
-import androidx.ui.layout.Spacer
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.surface.Surface
 import androidx.ui.res.imageResource
@@ -26,20 +26,27 @@ fun RoundedSearchBar() {
     ) {
         Container(
             height = 48.dp,
-            expanded = true,
-            alignment = Alignment.CenterLeft,
-            modifier = LayoutPadding(left = 16.dp)
+            modifier = LayoutPadding(left = 16.dp, right = 16.dp)
         ) {
-            Row {
-                Container(width = 24.dp, height = 24.dp) {
+            Row(modifier = LayoutWidth.Fill) {
+                Container(
+                    modifier = LayoutGravity.Center,
+                    alignment = Alignment.CenterLeft,
+                    width = 24.dp, height = 24.dp
+                ) {
                     DrawImage(
                         image = imageResource(
                             R.drawable.search
                         )
                     )
                 }
-                Spacer(modifier = LayoutWidth(16.dp))
-                Text("Search Pokemon, Move, Ability, etc")
+                Container(
+                    modifier = LayoutFlexible(1f) + LayoutGravity.Center +
+                        LayoutPadding(left = 16.dp, right = 16.dp),
+                    alignment = Alignment.CenterLeft
+                ) {
+                    Text("Search Pokemon, Move, Ability, etc")
+                }
             }
         }
     }

@@ -14,7 +14,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MaterialTheme(colors = lightThemeColors) {
+            MaterialTheme(
+                colors = lightThemeColors,
+                typography = themeTypography
+            ) {
                 backPressHandler.Provider {
                     Root.Content()
                 }
@@ -32,7 +35,10 @@ class MainActivity : AppCompatActivity() {
 @Preview
 @Composable
 fun DefaultPreview() {
-    MaterialTheme(colors = lightThemeColors) {
+    MaterialTheme(
+        colors = lightThemeColors,
+        typography = themeTypography
+    ) {
         Root.Content()
     }
 }
