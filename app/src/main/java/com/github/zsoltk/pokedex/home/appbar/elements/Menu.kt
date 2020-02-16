@@ -8,9 +8,10 @@ import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Container
 import androidx.ui.layout.EdgeInsets
+import androidx.ui.layout.LayoutGravity
 import androidx.ui.layout.LayoutHeight
+import androidx.ui.layout.LayoutPadding
 import androidx.ui.layout.LayoutWidth
-import androidx.ui.layout.Padding
 import androidx.ui.layout.Stack
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.ripple.Ripple
@@ -56,16 +57,13 @@ fun MenuItemButton(text: String, color: Color, onClick: () -> Unit = {}) {
                 Stack(
                     modifier = LayoutHeight(64.dp) + LayoutWidth.Fill
                 ) {
-                    Container(alignment = Alignment.CenterLeft) {
-                        Padding(left = 16.dp) {
-                            Text(
-                                text = text,
-                                style = MaterialTheme.typography().body1.copy(
-                                    color = Color.White
-                                )
-                            )
-                        }
-                    }
+                    Text(
+                        modifier = LayoutGravity.CenterLeft + LayoutPadding(left = 16.dp),
+                        text = text,
+                        style = MaterialTheme.typography().body1.copy(
+                            color = Color.White
+                        )
+                    )
 
                     Container(
                         alignment = Alignment.TopLeft,
