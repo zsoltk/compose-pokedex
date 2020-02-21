@@ -7,7 +7,6 @@ import androidx.ui.layout.Column
 import androidx.ui.layout.Container
 import androidx.ui.layout.LayoutPadding
 import androidx.ui.layout.LayoutWidth
-import androidx.ui.layout.Padding
 import androidx.ui.layout.Row
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.surface.Surface
@@ -33,7 +32,7 @@ fun NewsCard(newsItem: NewsItem) {
             NewsImage()
         }
 
-        Padding(top = 16.dp, bottom = 16.dp) {
+        Container(modifier = LayoutPadding(top = 16.dp, bottom = 16.dp)) {
             HorizontalRuler(
                 color = colorResource(
                     R.color.grey_200
@@ -46,11 +45,12 @@ fun NewsCard(newsItem: NewsItem) {
 
 @Composable
 private fun NewsImage() {
-    Padding(left = 48.dp) {
-        Surface(shape = RoundedCornerShape(8.dp)) {
-            Container(width = 112.dp, height = 64.dp) {
-                LoadImage(R.drawable.news1)
-            }
+    Surface(
+        shape = RoundedCornerShape(8.dp),
+        modifier = LayoutPadding(left = 48.dp)
+    ) {
+        Container(width = 112.dp, height = 64.dp) {
+            LoadImage(R.drawable.news1)
         }
     }
 }
