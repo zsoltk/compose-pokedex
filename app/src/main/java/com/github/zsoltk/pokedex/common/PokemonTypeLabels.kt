@@ -5,8 +5,8 @@ import androidx.ui.core.Text
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.layout.LayoutHeight
+import androidx.ui.layout.LayoutPadding
 import androidx.ui.layout.LayoutWidth
-import androidx.ui.layout.Padding
 import androidx.ui.layout.Spacer
 import androidx.ui.material.surface.Surface
 import androidx.ui.res.colorResource
@@ -46,19 +46,18 @@ fun PokemonTypeLabels(types: List<String>?, metrics: TypeLabelMetrics) {
 
 @Composable
 fun PokemonTypeLabel(text: String, metrics: TypeLabelMetrics) {
-    Padding(
-        top = metrics.verticalPadding,
-        bottom = metrics.verticalPadding,
-        left = metrics.horizontalPadding,
-        right = metrics.horizontalPadding
-    ) {
-        Text(
-            text = text,
-            style = TextStyle(
-                fontFamily = appFontFamily,
-                fontSize = metrics.fontSize,
-                color = colorResource(R.color.white_1000)
-            )
+    Text(
+        text = text,
+        modifier = LayoutPadding(
+            left = metrics.horizontalPadding,
+            right = metrics.horizontalPadding,
+            top = metrics.verticalPadding,
+            bottom = metrics.verticalPadding
+        ),
+        style = TextStyle(
+            fontFamily = appFontFamily,
+            fontSize = metrics.fontSize,
+            color = colorResource(R.color.white_1000)
         )
-    }
+    )
 }

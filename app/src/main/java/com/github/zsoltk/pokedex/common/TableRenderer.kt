@@ -1,7 +1,8 @@
 package com.github.zsoltk.pokedex.common
 
 import androidx.compose.Composable
-import androidx.ui.layout.Padding
+import androidx.ui.layout.Container
+import androidx.ui.layout.LayoutPadding
 import androidx.ui.layout.Table
 import androidx.ui.layout.TableColumnWidth
 import androidx.ui.unit.Dp
@@ -17,7 +18,12 @@ import androidx.ui.unit.dp
  * can add that separately by wrapping the whole [TableRenderer] with [Padding].
  */
 @Composable
-fun <T> TableRenderer(cols: Int, items: List<T>, cellSpacing: Dp, cellRenderer: @Composable() (Cell<T>) -> Unit) {
+fun <T> TableRenderer(
+    cols: Int,
+    items: List<T>,
+    cellSpacing: Dp,
+    cellRenderer: @Composable() (Cell<T>) -> Unit
+) {
     val rows = items.size / cols
     val lastIndex = items.lastIndex
 
@@ -38,11 +44,13 @@ fun <T> TableRenderer(cols: Int, items: List<T>, cellSpacing: Dp, cellRenderer: 
                         colIndex = j - startIndex
                     )
 
-                    Padding(
-                        left = if (cell.colIndex > 0) cellSpacing else 0.dp,
-                        top = if (cell.rowIndex > 0) cellSpacing else 0.dp,
-                        right = if (cell.colIndex < cols - 1) cellSpacing else 0.dp,
-                        bottom = if (cell.rowIndex < rows - 1) cellSpacing else 0.dp
+                    Container(
+                        modifier = LayoutPadding(
+                            left = if (cell.colIndex > 0) cellSpacing else 0.dp,
+                            top = if (cell.rowIndex > 0) cellSpacing else 0.dp,
+                            right = if (cell.colIndex < cols - 1) cellSpacing else 0.dp,
+                            bottom = if (cell.rowIndex < rows - 1) cellSpacing else 0.dp
+                        )
                     ) {
                         cellRenderer(
                             cell

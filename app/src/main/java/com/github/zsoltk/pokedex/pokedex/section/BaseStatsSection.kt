@@ -5,7 +5,6 @@ import androidx.ui.core.Text
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Container
 import androidx.ui.layout.LayoutPadding
-import androidx.ui.layout.Padding
 import androidx.ui.layout.Table
 import androidx.ui.layout.TableColumnWidth
 import androidx.ui.material.LinearProgressIndicator
@@ -55,23 +54,21 @@ private fun StatsTable(stats: List<Stat>) {
     ) {
         stats.forEach {
             tableRow {
-                Padding(right = 16.dp, bottom = 8.dp) {
-                    Text(
-                        text = it.label,
-                        style = MaterialTheme.typography().body2.copy(
-                            color = colorResource(R.color.grey_900)
-                        )
+                Text(
+                    text = it.label,
+                    modifier = LayoutPadding(right = 16.dp, bottom = 8.dp),
+                    style = MaterialTheme.typography().body2.copy(
+                        color = colorResource(R.color.grey_900)
                     )
-                }
+                )
 
-                Padding(right = 16.dp, bottom = 8.dp) {
-                    Text(
-                        text = it.value.toString(),
-                        style = MaterialTheme.typography().body2.copy(
-                            fontWeight = FontWeight.Bold
-                        )
+                Text(
+                    text = it.value.toString(),
+                    modifier = LayoutPadding(right = 16.dp, bottom = 8.dp),
+                    style = MaterialTheme.typography().body2.copy(
+                        fontWeight = FontWeight.Bold
                     )
-                }
+                )
 
                 Container(modifier = LayoutPadding(top = 8.dp)) {
                     LinearProgressIndicator(

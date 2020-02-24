@@ -3,7 +3,8 @@ package com.github.zsoltk.pokedex.home
 import androidx.compose.Composable
 import androidx.ui.foundation.VerticalScroller
 import androidx.ui.layout.Column
-import androidx.ui.layout.Padding
+import androidx.ui.layout.Container
+import androidx.ui.layout.LayoutPadding
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import com.github.zsoltk.pokedex.R
@@ -30,7 +31,7 @@ interface Home {
             VerticalScroller {
                 Column {
                     MainAppBar(onMenuItemSelected)
-                    Padding(padding = 32.dp) {
+                    Container(modifier = LayoutPadding(32.dp)) {
                         NewsSection()
                     }
                 }

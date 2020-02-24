@@ -18,7 +18,6 @@ import androidx.ui.layout.LayoutHeight
 import androidx.ui.layout.LayoutPadding
 import androidx.ui.layout.LayoutSize
 import androidx.ui.layout.LayoutWidth
-import androidx.ui.layout.Padding
 import androidx.ui.layout.Stack
 import androidx.ui.material.Button
 import androidx.ui.material.MaterialTheme
@@ -114,9 +113,10 @@ private fun ErrorView(onRetryClicked: () -> Unit) {
             )
             Button(
                 modifier = LayoutGravity.Center,
-                text = "Retry",
                 onClick = onRetryClicked
-            )
+            ) {
+                Text("Retry")
+            }
         }
     }
 }
@@ -125,19 +125,17 @@ private fun ErrorView(onRetryClicked: () -> Unit) {
 private fun ContentView(onPokemonSelected: (Pokemon) -> Unit) {
     Container(alignment = Alignment.TopLeft) {
         VerticalScroller {
-            Padding(padding = 32.dp) {
-                Column {
-                    Title(
-                        text = "Pokedex",
-                        color = MaterialTheme.colors().onSurface,
-                        modifier = LayoutPadding(
-                            top = 64.dp,
-                            bottom = 24.dp
-                        )
+            Column(LayoutPadding(32.dp)) {
+                Title(
+                    text = "Pokedex",
+                    color = MaterialTheme.colors().onSurface,
+                    modifier = LayoutPadding(
+                        top = 64.dp,
+                        bottom = 24.dp
                     )
-                    TableRenderer(cols = 2, cellSpacing = 4.dp, items = pokemons) { cell ->
-                        PokeDexCard(cell.item, onPokemonSelected)
-                    }
+                )
+                TableRenderer(cols = 2, cellSpacing = 4.dp, items = pokemons) { cell ->
+                    PokeDexCard(cell.item, onPokemonSelected)
                 }
             }
         }

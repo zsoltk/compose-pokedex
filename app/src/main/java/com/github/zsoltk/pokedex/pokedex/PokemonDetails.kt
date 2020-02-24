@@ -13,7 +13,6 @@ import androidx.ui.layout.LayoutHeight
 import androidx.ui.layout.LayoutPadding
 import androidx.ui.layout.LayoutSize
 import androidx.ui.layout.LayoutWidth
-import androidx.ui.layout.Padding
 import androidx.ui.layout.Row
 import androidx.ui.layout.Spacer
 import androidx.ui.layout.Stack
@@ -181,12 +180,14 @@ private fun StackScope.CardContent(pokemon: Pokemon) {
                 val sectionTitles = Sections.values().map { it.title }
                 var section by state { Sections.BaseStats }
                 TabRow(items = sectionTitles, selectedIndex = section.ordinal) { index, text ->
-                    Tab(text = text, selected = section.ordinal == index) {
-                        section = Sections.values()[index]
-                    }
+                    Tab(
+                        text = text,
+                        selected = section.ordinal == index,
+                        onSelected = { section = Sections.values()[index] }
+                    )
                 }
 
-                Padding(padding = 24.dp) {
+                Container(modifier = LayoutPadding(24.dp)) {
                     when (section) {
                         Sections.About -> AboutSection(pokemon)
                         Sections.BaseStats -> BaseStatsSection(pokemon)
