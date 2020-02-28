@@ -27,18 +27,31 @@ interface Home {
     }
 
     companion object {
+        object Header
+
         @Composable
         fun Content(onMenuItemSelected: (MenuItem) -> Unit) {
-            AdapterList(data = List(1000) { NewsItem(it) }) {
-                if(it.indexInList == 0) {
-                    MainAppBar(onMenuItemSelected)
-                    Container(modifier = LayoutPadding(32.dp)) {
-                        NewsHeaderSection()
-                    }
+            val items = listOf(Header) + List(1000) { NewsItem() }
+            AdapterList(items) {
+                when (it) {
+                    is Header -> ListHeader(onMenuItemSelected)
+                    is NewsItem -> ListItem(it)
                 }
-                Container(modifier = LayoutPadding(left = 32.dp, right = 32.dp)) {
-                    NewsCard(newsItem = it)
-                }
+            }
+        }
+
+        @Composable
+        fun ListHeader(onMenuItemSelected: (MenuItem) -> Unit) {
+            MainAppBar(onMenuItemSelected)
+            Container(modifier = LayoutPadding(32.dp)) {
+                NewsHeaderSection()
+            }
+        }
+
+        @Composable
+        fun ListItem(item: NewsItem) {
+            Container(modifier = LayoutPadding(left = 32.dp, right = 32.dp)) {
+                NewsCard(newsItem = item)
             }
         }
     }
