@@ -16,7 +16,7 @@ interface Root {
     companion object {
         @Composable
         fun Content(defaultRouting: Routing = Routing.Home) {
-            Router("Root", defaultRouting) { backStack ->
+            Router(defaultRouting) { backStack ->
                 val onMenuItemSelected: (MenuItem) -> Unit = {
                     when (it) {
                         MenuItem.Pokedex -> backStack.push(Routing.Pokedex)
