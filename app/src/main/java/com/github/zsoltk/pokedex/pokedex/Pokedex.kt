@@ -14,7 +14,7 @@ interface Pokedex {
     companion object {
         @Composable
         fun Content(defaultRouting: Routing = Routing.PokemonList) {
-            Router("Pokedex", defaultRouting) { backStack ->
+            Router(defaultRouting) { backStack ->
                 when (val routing = backStack.last()) {
                     is Routing.PokemonList -> PokemonList.Content(
                         onPokemonSelected = { backStack.push(Routing.PokemonDetails(it)) }
