@@ -56,7 +56,7 @@ private fun StatsTable(stats: List<Stat>) {
             tableRow {
                 Text(
                     text = it.label,
-                    modifier = LayoutPadding(right = 16.dp, bottom = 8.dp),
+                    modifier = LayoutPadding(end = 16.dp, bottom = 8.dp),
                     style = MaterialTheme.typography().body2.copy(
                         color = colorResource(R.color.grey_900)
                     )
@@ -64,7 +64,7 @@ private fun StatsTable(stats: List<Stat>) {
 
                 Text(
                     text = it.value.toString(),
-                    modifier = LayoutPadding(right = 16.dp, bottom = 8.dp),
+                    modifier = LayoutPadding(end = 16.dp, bottom = 8.dp),
                     style = MaterialTheme.typography().body2.copy(
                         fontWeight = FontWeight.Bold
                     )

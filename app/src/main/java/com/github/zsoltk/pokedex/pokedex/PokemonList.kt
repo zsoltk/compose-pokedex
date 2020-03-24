@@ -4,10 +4,10 @@ import androidx.compose.Composable
 import androidx.compose.remember
 import androidx.ui.animation.Crossfade
 import androidx.ui.core.Alignment
-import androidx.ui.core.Opacity
 import androidx.ui.core.Text
+import androidx.ui.core.drawOpacity
 import androidx.ui.foundation.Clickable
-import androidx.ui.foundation.DrawImage
+import androidx.ui.foundation.Image
 import androidx.ui.foundation.VerticalScroller
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
@@ -15,6 +15,7 @@ import androidx.ui.layout.Column
 import androidx.ui.layout.Container
 import androidx.ui.layout.LayoutGravity
 import androidx.ui.layout.LayoutHeight
+import androidx.ui.layout.LayoutOffset
 import androidx.ui.layout.LayoutPadding
 import androidx.ui.layout.LayoutSize
 import androidx.ui.layout.LayoutWidth
@@ -22,7 +23,7 @@ import androidx.ui.layout.Stack
 import androidx.ui.material.Button
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.ripple.Ripple
-import androidx.ui.material.surface.Surface
+import androidx.ui.material.Surface
 import androidx.ui.res.colorResource
 import androidx.ui.res.imageResource
 import androidx.ui.text.AnnotatedString
@@ -123,7 +124,7 @@ private fun ErrorView(onRetryClicked: () -> Unit) {
 
 @Composable
 private fun ContentView(onPokemonSelected: (Pokemon) -> Unit) {
-    Container(alignment = Alignment.TopLeft) {
+    Container(alignment = Alignment.TopStart) {
         VerticalScroller {
             Column(LayoutPadding(32.dp)) {
                 Title(
@@ -162,18 +163,18 @@ fun PokeDexCard(
 @Composable
 private fun PokeDexCardContent(pokemon: Pokemon) {
     Stack(modifier = LayoutHeight(120.dp) + LayoutWidth.Fill) {
-        Column(modifier = LayoutGravity.TopLeft + LayoutPadding(top = 8.dp, left = 12.dp)) {
+        Column(modifier = LayoutGravity.TopStart + LayoutPadding(top = 8.dp, start = 12.dp)) {
             PokemonName(pokemon.name)
             PokemonTypeLabels(pokemon.typeOfPokemon, SMALL)
         }
 
-        Container(LayoutGravity.TopRight + LayoutPadding(top = 8.dp, right = 12.dp)) {
+        Container(LayoutGravity.TopEnd + LayoutPadding(top = 8.dp, end = 12.dp)) {
             PokemonId(pokemon.id)
         }
 
         Container(
-            modifier = LayoutGravity.BottomRight +
-                LayoutPadding(bottom = (-10).dp, right = (-5).dp) +
+            modifier = LayoutGravity.BottomEnd +
+                LayoutOffset(x = 5.dp, y = 10.dp) +
                 LayoutSize(96.dp)
         ) {
             PokeBallSmall(
@@ -184,11 +185,11 @@ private fun PokeDexCardContent(pokemon: Pokemon) {
 
         pokemon.image?.let { image ->
             Container(
-                modifier = LayoutGravity.BottomRight +
-                    LayoutPadding(bottom = 8.dp, right = 8.dp) +
+                modifier = LayoutGravity.BottomEnd +
+                    LayoutPadding(bottom = 8.dp, end = 8.dp) +
                     LayoutSize(72.dp)
             ) {
-                DrawImage(image = imageResource(image))
+                Image(image = imageResource(image))
             }
         }
     }
@@ -210,16 +211,15 @@ private fun PokemonName(text: String?) {
 
 @Composable
 private fun PokemonId(text: String?) {
-    Opacity(opacity = 0.1f) {
-        Text(
-            text = text ?: "",
-            style = TextStyle(
-                fontFamily = appFontFamily,
-                fontWeight = FontWeight.Bold,
-                fontSize = 14.sp
-            )
+    Text(
+        text = text ?: "",
+        modifier = drawOpacity(0.1f),
+        style = TextStyle(
+            fontFamily = appFontFamily,
+            fontWeight = FontWeight.Bold,
+            fontSize = 14.sp
         )
-    }
+    )
 }
 
 @Preview

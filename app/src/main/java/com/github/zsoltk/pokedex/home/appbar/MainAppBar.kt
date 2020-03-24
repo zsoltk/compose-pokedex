@@ -1,6 +1,5 @@
 package com.github.zsoltk.pokedex.home.appbar
 
-import android.icu.text.CaseMap
 import androidx.compose.Composable
 import androidx.ui.layout.Column
 import androidx.ui.layout.LayoutHeight
@@ -22,8 +21,8 @@ fun MainAppBar(onMenuItemSelected: (Home.MenuItem) -> Unit) {
         Column(
             modifier = LayoutPadding(
                 top = 32.dp,
-                left = 32.dp,
-                right = 32.dp,
+                start = 32.dp,
+                end = 32.dp,
                 bottom = 16.dp
             )
         ) {

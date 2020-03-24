@@ -2,7 +2,6 @@ package com.github.zsoltk.pokedex.pokedex
 
 import androidx.compose.Composable
 import androidx.compose.state
-import androidx.ui.core.Opacity
 import androidx.ui.core.Text
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
@@ -10,6 +9,7 @@ import androidx.ui.layout.Column
 import androidx.ui.layout.Container
 import androidx.ui.layout.LayoutGravity
 import androidx.ui.layout.LayoutHeight
+import androidx.ui.layout.LayoutOffset
 import androidx.ui.layout.LayoutPadding
 import androidx.ui.layout.LayoutSize
 import androidx.ui.layout.LayoutWidth
@@ -19,7 +19,7 @@ import androidx.ui.layout.Stack
 import androidx.ui.layout.StackScope
 import androidx.ui.material.Tab
 import androidx.ui.material.TabRow
-import androidx.ui.material.surface.Surface
+import androidx.ui.material.Surface
 import androidx.ui.res.colorResource
 import androidx.ui.text.TextStyle
 import androidx.ui.text.font.FontWeight
@@ -56,19 +56,17 @@ interface PokemonDetails {
                     HeaderLeft(pokemon)
                     HeaderRight(pokemon)
                     CardContent(pokemon)
-                    Image(pokemon)
+                    PokemonImage(pokemon)
                 }
             }
         }
     }
 }
 
+@Composable
 private fun StackScope.RoundedRectangleDecoration() {
     Container(
-        modifier = LayoutGravity.TopLeft + LayoutPadding(
-            top = (-50).dp,
-            left = (-60).dp
-        )
+        modifier = LayoutGravity.TopStart + LayoutOffset(x = (-60).dp, y = (-50).dp)
     ) {
         Rotate(-20f) {
             Surface(color = Color(0x22FFFFFF), shape = RoundedCornerShape(32.dp)) {
@@ -78,21 +76,21 @@ private fun StackScope.RoundedRectangleDecoration() {
     }
 }
 
+@Composable
 private fun StackScope.DottedDecoration() {
     Container(
-        modifier = LayoutGravity.TopRight + LayoutPadding(
+        modifier = LayoutGravity.TopEnd + LayoutPadding(
             top = 4.dp,
-            right = 100.dp
+            end = 100.dp
         ),
         width = 63.dp,
         height = 34.dp
     ) {
-        Opacity(opacity = 0.3f) {
-            LoadImage(imageResId = R.drawable.dotted)
-        }
+        LoadImage(imageResId = R.drawable.dotted, opacity = 0.3f)
     }
 }
 
+@Composable
 private fun StackScope.RotatingPokeBall() {
     Container(
         modifier = LayoutGravity.TopCenter +
@@ -108,9 +106,10 @@ private fun StackScope.RotatingPokeBall() {
     }
 }
 
+@Composable
 private fun StackScope.HeaderRight(pokemon: Pokemon) {
     Container(
-        modifier = LayoutGravity.TopRight +
+        modifier = LayoutGravity.TopEnd +
             LayoutPadding(top = 52.dp) +
             LayoutPadding(32.dp)
     ) {
@@ -139,9 +138,10 @@ private fun StackScope.HeaderRight(pokemon: Pokemon) {
     }
 }
 
+@Composable
 private fun StackScope.HeaderLeft(pokemon: Pokemon) {
     Container(
-        modifier = LayoutGravity.TopLeft +
+        modifier = LayoutGravity.TopStart +
             LayoutPadding(top = 40.dp) +
             LayoutPadding(32.dp)
     ) {
@@ -167,6 +167,7 @@ private enum class Sections(val title: String) {
     Moves("Moves")
 }
 
+@Composable
 private fun StackScope.CardContent(pokemon: Pokemon) {
     Container(
         modifier = LayoutGravity.TopCenter +
@@ -181,7 +182,7 @@ private fun StackScope.CardContent(pokemon: Pokemon) {
                 var section by state { Sections.BaseStats }
                 TabRow(items = sectionTitles, selectedIndex = section.ordinal) { index, text ->
                     Tab(
-                        text = text,
+                        text = { Text(text) },
                         selected = section.ordinal == index,
                         onSelected = { section = Sections.values()[index] }
                     )
@@ -200,7 +201,8 @@ private fun StackScope.CardContent(pokemon: Pokemon) {
     }
 }
 
-private fun StackScope.Image(pokemon: Pokemon) {
+@Composable
+private fun StackScope.PokemonImage(pokemon: Pokemon) {
     pokemon.image?.let { image ->
         Container(
             modifier = LayoutGravity.TopCenter +

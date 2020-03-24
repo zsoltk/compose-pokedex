@@ -8,7 +8,7 @@ import androidx.ui.layout.LayoutHeight
 import androidx.ui.layout.LayoutPadding
 import androidx.ui.layout.LayoutWidth
 import androidx.ui.layout.Spacer
-import androidx.ui.material.surface.Surface
+import androidx.ui.material.Surface
 import androidx.ui.res.colorResource
 import androidx.ui.text.TextStyle
 import androidx.ui.unit.Dp
@@ -49,8 +49,8 @@ fun PokemonTypeLabel(text: String, metrics: TypeLabelMetrics) {
     Text(
         text = text,
         modifier = LayoutPadding(
-            left = metrics.horizontalPadding,
-            right = metrics.horizontalPadding,
+            start = metrics.horizontalPadding,
+            end = metrics.horizontalPadding,
             top = metrics.verticalPadding,
             bottom = metrics.verticalPadding
         ),

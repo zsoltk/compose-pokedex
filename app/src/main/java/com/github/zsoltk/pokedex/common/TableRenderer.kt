@@ -46,9 +46,9 @@ fun <T> TableRenderer(
 
                     Container(
                         modifier = LayoutPadding(
-                            left = if (cell.colIndex > 0) cellSpacing else 0.dp,
+                            start = if (cell.colIndex > 0) cellSpacing else 0.dp,
                             top = if (cell.rowIndex > 0) cellSpacing else 0.dp,
-                            right = if (cell.colIndex < cols - 1) cellSpacing else 0.dp,
+                            end = if (cell.colIndex < cols - 1) cellSpacing else 0.dp,
                             bottom = if (cell.rowIndex < rows - 1) cellSpacing else 0.dp
                         )
                     ) {

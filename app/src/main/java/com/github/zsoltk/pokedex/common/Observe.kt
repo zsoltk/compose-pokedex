@@ -1,9 +1,6 @@
 package com.github.zsoltk.pokedex.common
 
-import androidx.annotation.CheckResult
 import androidx.compose.Composable
-import androidx.compose.effectOf
-import androidx.compose.memo
 import androidx.compose.onCommit
 import androidx.compose.remember
 import androidx.compose.state
