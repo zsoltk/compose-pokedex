@@ -7,15 +7,15 @@ import androidx.ui.foundation.Clickable
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Container
-import androidx.ui.layout.EdgeInsets
 import androidx.ui.layout.LayoutGravity
 import androidx.ui.layout.LayoutHeight
+import androidx.ui.layout.LayoutOffset
 import androidx.ui.layout.LayoutPadding
 import androidx.ui.layout.LayoutWidth
 import androidx.ui.layout.Stack
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.ripple.Ripple
-import androidx.ui.material.surface.Surface
+import androidx.ui.material.Surface
 import androidx.ui.res.colorResource
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
@@ -58,7 +58,7 @@ fun MenuItemButton(text: String, color: Color, onClick: () -> Unit = {}) {
                     modifier = LayoutHeight(64.dp) + LayoutWidth.Fill
                 ) {
                     Text(
-                        modifier = LayoutGravity.CenterLeft + LayoutPadding(left = 16.dp),
+                        modifier = LayoutGravity.CenterStart + LayoutPadding(start = 16.dp),
                         text = text,
                         style = MaterialTheme.typography().body1.copy(
                             color = Color.White
@@ -66,8 +66,8 @@ fun MenuItemButton(text: String, color: Color, onClick: () -> Unit = {}) {
                     )
 
                     Container(
-                        alignment = Alignment.TopLeft,
-                        padding = EdgeInsets(top = (-40).dp, left = (-30).dp),
+                        alignment = Alignment.TopStart,
+                        modifier = LayoutOffset(x = (-30).dp, y = (-40).dp),
                         expanded = true
                     ) {
                         Container(width = 60.dp, height = 60.dp) {
@@ -79,8 +79,8 @@ fun MenuItemButton(text: String, color: Color, onClick: () -> Unit = {}) {
                     }
 
                     Container(
-                        alignment = Alignment.TopRight,
-                        padding = EdgeInsets(right = (-20).dp),
+                        alignment = Alignment.TopEnd,
+                        modifier = LayoutOffset(x = 20.dp, y = 0.dp),
                         expanded = true
                     ) {
                         Container(width = 96.dp, height = 96.dp) {

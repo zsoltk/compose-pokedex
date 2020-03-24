@@ -7,7 +7,7 @@ import androidx.ui.layout.Container
 import androidx.ui.layout.LayoutWidth
 import androidx.ui.layout.Row
 import androidx.ui.layout.Spacer
-import androidx.ui.material.surface.Surface
+import androidx.ui.material.Surface
 import androidx.ui.unit.Dp
 import androidx.ui.unit.dp
 
@@ -20,7 +20,7 @@ fun HorizontalRuler(
 ) {
     Row(
         modifier = LayoutWidth.Fill,
-        arrangement = if (centered) Arrangement.Center else Arrangement.Begin
+        arrangement = if (centered) Arrangement.Center else Arrangement.Start
     ) {
         Surface(color = color) {
             Container(

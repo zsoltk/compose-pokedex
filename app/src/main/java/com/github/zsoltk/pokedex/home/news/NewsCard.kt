@@ -9,7 +9,7 @@ import androidx.ui.layout.LayoutPadding
 import androidx.ui.layout.LayoutWidth
 import androidx.ui.layout.Row
 import androidx.ui.material.MaterialTheme
-import androidx.ui.material.surface.Surface
+import androidx.ui.material.Surface
 import androidx.ui.res.colorResource
 import androidx.ui.text.font.FontWeight
 import androidx.ui.unit.dp
@@ -22,7 +22,7 @@ import com.github.zsoltk.pokedex.entity.NewsItem
 fun NewsCard(newsItem: NewsItem) {
     Column {
         Row(modifier = LayoutWidth.Fill) {
-            Column(modifier = LayoutFlexible(1f)) {
+            Column(modifier = LayoutWeight(1f)) {
                 NewsTitle(newsItem.title)
                 NewsPublishedDate(
                     newsItem.date
@@ -47,7 +47,7 @@ fun NewsCard(newsItem: NewsItem) {
 private fun NewsImage() {
     Surface(
         shape = RoundedCornerShape(8.dp),
-        modifier = LayoutPadding(left = 48.dp)
+        modifier = LayoutPadding(start = 48.dp)
     ) {
         Container(width = 112.dp, height = 64.dp) {
             LoadImage(R.drawable.news1)

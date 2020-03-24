@@ -32,11 +32,11 @@ fun NewsSection() {
 @Composable
 fun NewsHeaderSection() {
     Stack(modifier = LayoutWidth.Fill) {
-        Container(modifier = LayoutGravity.BottomLeft) {
+        Container(modifier = LayoutGravity.BottomStart) {
             NewsHeader()
         }
 
-        Container(modifier = LayoutGravity.BottomRight) {
+        Container(modifier = LayoutGravity.BottomEnd) {
             NewsViewAll()
         }
     }

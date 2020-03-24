@@ -33,7 +33,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion "0.1.0-dev05"
+        kotlinCompilerExtensionVersion "0.1.0-dev07"
     }
 }
 
@@ -42,14 +42,14 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation "androidx.lifecycle:lifecycle-livedata:2.1.0"
-    implementation 'androidx.ui:ui-framework:0.1.0-dev05'
-    implementation 'androidx.ui:ui-layout:0.1.0-dev05'
-    implementation 'androidx.ui:ui-foundation:0.1.0-dev05'
-    implementation 'androidx.ui:ui-material:0.1.0-dev05'
-    implementation 'androidx.ui:ui-tooling:0.1.0-dev05'
-    implementation 'com.github.zsoltk:compose-router:0.5.2'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation "androidx.lifecycle:lifecycle-livedata:2.2.0"
+    implementation 'androidx.ui:ui-framework:0.1.0-dev07'
+    implementation 'androidx.ui:ui-layout:0.1.0-dev07'
+    implementation 'androidx.ui:ui-foundation:0.1.0-dev07'
+    implementation 'androidx.ui:ui-material:0.1.0-dev07'
+    implementation 'androidx.ui:ui-tooling:0.1.0-dev07'
+    implementation 'com.github.zsoltk:compose-router:0.7.0'
     implementation "io.reactivex.rxjava2:rxjava:2.2.17"
     implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
     testImplementation 'junit:junit:4.12'
