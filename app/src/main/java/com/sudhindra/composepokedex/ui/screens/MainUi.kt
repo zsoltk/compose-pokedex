@@ -1,8 +1,12 @@
 package com.sudhindra.composepokedex.ui.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -11,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.sudhindra.composepokedex.routes.Route
 import com.sudhindra.composepokedex.ui.components.CustomAppBar
+import com.sudhindra.composepokedex.ui.utils.LocalTheme
 
 val allRoutes = listOf(
     Route.Dashboard,
@@ -31,10 +36,24 @@ fun MainUi() {
     val title: String =
         allRoutes.find { it.route == currentRoute }?.title ?: Route.Dashboard.title
 
+    @Composable
+    fun toggleTheme() {
+        LocalTheme.current.toggleTheme()
+    }
+
+    val someState = remember {
+        mutableStateOf(true)
+    }
+
+    if (someState.value) {
+        toggleTheme()
+    }
+
     Scaffold(topBar = {
         CustomAppBar(
+            Modifier.clickable { someState.value = !someState.value },
             label = title,
-            showBackButton = currentRoute != Route.Dashboard.route
+            showBackButton = currentRoute != Route.Dashboard.route,
         )
     }) {
         NavHost(navController, startDestination = Route.Dashboard.route) {
