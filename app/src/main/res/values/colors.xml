@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/poke_red</color>
-    <color name="colorPrimaryDark">@color/poke_red</color>
-    <color name="colorAccent">#6C79DB</color>
+    <color name="light_primary">#E73934</color>
+    <color name="light_primary_variant">#E73934</color>
+    <color name="light_secondary">#416480</color>
+    <color name="dark_primary">#E24540</color>
+    <color name="dark_primary_variant">#E24540</color>
+    <color name="dark_secondary">#4D6F8B</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
 </resources>

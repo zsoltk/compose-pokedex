@@ -1,61 +1,6 @@
-# compose-pokedex
-![License-MIT](https://img.shields.io/badge/License-MIT-red.svg)
-![Featured in androidweekly.net Issue #399](https://androidweekly.net/issues/issue-399/badge)
-
-Pokedex on Jetpack Compose. 
-
-Single-Activity, no Fragments.
-
-## Install
-
-You can build the project with Android Studio 4.0 or [download the apk directly](https://github.com/zsoltk/compose-pokedex/releases) from releases.
-
-## Screenshots
-
-![](https://imgur.com/QK1oSpH.png)
-![](https://imgur.com/ItpuqRh.png)
-![](https://imgur.com/otiwrN5.png)
-
-
-## Original design
-
-[Pokedex App design](https://dribbble.com/shots/6545819-Pokedex-App) by [Saepul Nahwan](https://dribbble.com/saepulnahwan23)
-
-## Other Pokedex projects
-
-- [flutter_pokedex](https://github.com/scitbiz/flutter_pokedex/) by **Pham Sy Hung**
-- [Kotlin-Pokedex](https://github.com/mrcsxsiq/Kotlin-Pokedex) by **Marcos Paulo Farias**
-
-## Built with
-
-- [compose](https://developer.android.com/jetpack/compose)
-- [compose-router](https://github.com/zsoltk/compose-router)
-- [livedata](https://developer.android.com/topic/libraries/architecture/livedata)
-
-## License
-
-All the code available under the MIT license. See [LICENSE](LICENSE).
-
-```
-MIT License
-
-Copyright (c) 2020 Zsolt Kocsi
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+||||
+|:----------------------------------------:|:-----------------------------------------:|:-----------------------------------------: |
+| ![1](https://user-images.githubusercontent.com/55095527/162935181-99cf80e5-c33b-4766-b7ed-f9237644a0cd.jpg) | ![2](https://user-images.githubusercontent.com/55095527/162935192-954385b0-6d4e-403c-9a69-79f1bd7e5167.jpg) | ![3](https://user-images.githubusercontent.com/55095527/162935203-1799e92b-c6cc-4a5a-a792-77f5db057efb.jpg) |
+| ![4](https://user-images.githubusercontent.com/55095527/162935350-66f2367f-4c69-4676-85e3-80ef9b4ad7e5.jpg) | ![5](https://user-images.githubusercontent.com/55095527/162937802-672453c9-80eb-47a1-9397-75c1dea596ee.jpg) | ![6](https://user-images.githubusercontent.com/55095527/162935384-4f1f12c0-c170-4809-b37f-2bd9e7f402a5.jpg) |
+| ![7](https://user-images.githubusercontent.com/55095527/162935440-d8c1da94-3feb-468c-a362-1102dc3a76e6.jpg) | ![9](https://user-images.githubusercontent.com/55095527/162935462-a4453d11-899a-40ae-b5b2-f700b13dbf88.jpg) | ![10](https://user-images.githubusercontent.com/55095527/162935492-d443c27f-e618-407f-bef7-a5fbfb701482.jpg) |
+| ![11](https://user-images.githubusercontent.com/55095527/162935497-96d49428-3ec1-4e85-88b8-7d0dacd1b314.jpg) | ![12](https://user-images.githubusercontent.com/55095527/162935507-c26d958f-4235-4883-9ad3-5f7218a39ae4.jpg) |
