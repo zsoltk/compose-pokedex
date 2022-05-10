@@ -82,12 +82,12 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
 
     // Paging 3
-    implementation "androidx.paging:paging-runtime-ktx:3.0.1"
+    implementation "androidx.paging:paging-runtime-ktx:3.1.1"
     // Paging 3 Jetpack Compose Integration
     implementation "androidx.paging:paging-compose:1.0.0-alpha14"
 
     // Room
-    def room_version = "2.3.0"
+    def room_version = "2.4.2"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
