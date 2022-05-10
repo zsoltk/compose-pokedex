@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.sudhindra.composepokedex.routes.Route
+import com.sudhindra.composepokedex.ui.theme.PokedexTheme
 
 val dashboardRoutes = allRoutes.toMutableList()
     .apply { removeFirst() }.toList()
@@ -49,7 +50,7 @@ fun DashboardItem(title: String, onClick: () -> Unit) {
         Modifier
             .fillMaxSize()
             .padding(8.dp),
-        backgroundColor = MaterialTheme.colors.primary,
+        backgroundColor = PokedexTheme.colors.surface,
         shape = RoundedCornerShape(16.dp)
     ) {
         Box(

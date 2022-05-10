@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import com.sudhindra.composepokedex.ui.screens.MainUi
+import com.sudhindra.composepokedex.ui.theme.PokedexTheme
+import com.sudhindra.composepokedex.ui.theme.ThemeType
 import com.sudhindra.composepokedex.ui.utils.WithTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -13,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            WithTheme {
+            PokedexTheme(type = ThemeType.FIRE) {
                 MainUi()
             }
         }
