@@ -2,10 +2,7 @@ package com.sudhindra.composepokedex.ui.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.material.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -27,6 +24,7 @@ val allRoutes = listOf(
     Route.Favourites,
 )
 
+
 @Composable
 fun MainUi() {
     val navController = rememberNavController()
@@ -41,17 +39,13 @@ fun MainUi() {
         LocalTheme.current.toggleTheme()
     }
 
-    val someState = remember {
-        mutableStateOf(true)
-    }
-
-    if (someState.value) {
+    val toggleThemeComposableAction = ComposableAction {
         toggleTheme()
     }
 
     Scaffold(topBar = {
         CustomAppBar(
-            Modifier.clickable { someState.value = !someState.value },
+            Modifier.clickable { toggleThemeComposableAction() },
             label = title,
             showBackButton = currentRoute != Route.Dashboard.route,
         )
@@ -72,6 +66,28 @@ fun MainUi() {
             composable(Route.Types.route) { TypesUi(navHostController = navController) }
             composable(Route.Regions.route) { RegionsUi(navHostController = navController) }
             composable(Route.Favourites.route) { FavouritesUi() }
+        }
+    }
+}
+
+interface NonComposableCall {
+    operator fun invoke()
+}
+
+@Composable
+fun ComposableAction(
+    action: @Composable () -> Unit
+): NonComposableCall {
+    var executionState by remember { mutableStateOf(false) }
+
+    if (executionState) {
+        action()
+        executionState = false
+    }
+
+    return object : NonComposableCall {
+        override fun invoke() {
+            executionState = true
         }
     }
 }
